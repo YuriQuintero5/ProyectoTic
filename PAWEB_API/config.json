@@ -1,0 +1,16 @@
+{
+    "db": {
+        "connectionString":"mongodb+srv://admin:7SknlYVK8rvl3RdW@cluster0.mzng7.mongodb.net/paweb?retryWrites=true&w=majority",
+        "dataBase":"paweb",
+        "admin": "admin",
+        "password": "7SknlYVK8rvl3RdW"
+    },
+    "server": {
+        "port": 3000
+    },
+    "roles": ["Administrador", "Técnico", "Asesor comercial", "Coordinador técnico", "Cliente", "Compras"],
+    "setupUser": {
+        "userName": "admin",
+        "password": "12345"
+    }
+}
