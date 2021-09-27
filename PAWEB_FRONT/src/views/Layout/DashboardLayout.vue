@@ -5,11 +5,19 @@
       <template slot="links">
         <sidebar-item
           :link="{
-            name: 'Dashboard',
-            path: '/dashboard',
+            name: 'Inicio',
+            path: '/inicio',
             icon: 'ni ni-tv-2 text-primary',
           }"
         >
+        </sidebar-item>
+
+        <sidebar-item
+              :link="{
+                name: 'Terceros',
+                path: '/terceros',
+                icon: 'ni ni-single-02 text-blue'
+                }">
         </sidebar-item>
 
         <sidebar-item
@@ -59,28 +67,7 @@
                     icon: 'ni ni-circle-08 text-pink'
                   }">
         </sidebar-item>
-      </template>
-
-      <template slot="links-after">
-        <hr class="my-3">
-        <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
-
-        <b-nav class="navbar-nav mb-md-3">
-          <b-nav-item
-               href="https://www.creative-tim.com/learning-lab/bootstrap-vue/quick-start/argon-dashboard"
-               >
-              <i class="ni ni-spaceship"></i>
-              <b-nav-text class="p-0">Getting started</b-nav-text>
-          </b-nav-item>
-          <b-nav-item href="https://www.creative-tim.com/learning-lab/bootstrap-vue/colors/argon-dashboard">
-              <i class="ni ni-palette"></i>
-              <b-nav-text class="p-0">Foundation</b-nav-text>
-          </b-nav-item>
-          <b-nav-item href="https://www.creative-tim.com/learning-lab/bootstrap-vue/avatar/argon-dashboard">
-              <i class="ni ni-ui-04"></i>
-              <b-nav-text class="p-0">Components</b-nav-text>
-          </b-nav-item>
-        </b-nav>
+        
       </template>
     </side-bar>
     <div class="main-content">
