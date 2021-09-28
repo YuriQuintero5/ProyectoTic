@@ -46,10 +46,7 @@ exports.create = async (req, res) => {
         }
       );
     } else {
-      const result = await model.findByIdAndUpdate(found.id, body, {
-        new: true,
-      });
-      senResponse(res, "ok", result);
+      senResponse(res, "error", "El tercero ya existe");
     }
   } catch (error) {
     senResponse(res, "error", error, 500);
@@ -62,6 +59,10 @@ exports.updateById = async (req, res) => {
     const people = await model
       .findByIdAndUpdate(id, req.body, { new: true })
       .populate("role");
+    if (people == null) {
+      throw "Id no encontrado";
+    }
+
     senResponse(res, "ok", people);
   } catch (error) {
     senResponse(res, "error", error, 500);
