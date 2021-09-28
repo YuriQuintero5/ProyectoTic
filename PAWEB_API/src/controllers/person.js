@@ -57,29 +57,36 @@ exports.create = async (req, res) => {
 };
 
 exports.updateById = async (req, res) => {
-  // try {
-  const id = req.params.id;
-  const people = await model
-    .findByIdAndUpdate(id, req.body, { new: true })
-    .populate("role");
-  senResponse(res, "ok", people);
-  // } catch (error) {
-  //   senResponse(res, "error", error, 500);
-  // }
+  try {
+    const id = req.params.id;
+    const people = await model
+      .findByIdAndUpdate(id, req.body, { new: true })
+      .populate("role");
+    senResponse(res, "ok", people);
+  } catch (error) {
+    senResponse(res, "error", error, 500);
+  }
 };
 
 exports.getAll = async (req, res) => {
   try {
-    const { roleName } = req.query;
-    if (!roleName) {
-      const people = await model.find().populate("role");
-      senResponse(res, "ok", people);
-    } else {
-      // const role = await modelRole.findOne({ roleName });
-      // var ObjectId = require("mongoose").Types.ObjectId;
-      const people = await model.find({ roleName }).populate("role");
-      senResponse(res, "ok", people);
+    let { identityDocument, firstName, lastName, roleName } = req.query;
+    // Filtrar por identificaión, nombre y/o rol
+    let filter = {};
+    if (identityDocument) {
+      filter.identityDocument = { $regex: `.*${identityDocument}.*` };
     }
+    if (firstName) {
+      filter.firstName = { $regex: `.*${firstName}.*` };
+    }
+    if (lastName) {
+      filter.lastName = { $regex: `.*${lastName}.*` };
+    }
+    if (roleName) {
+      filter.roleName = roleName;
+    }
+    const people = await model.find(filter).populate("role");
+    senResponse(res, "ok", people);
   } catch (error) {
     senResponse(res, "error", error, 500);
   }
