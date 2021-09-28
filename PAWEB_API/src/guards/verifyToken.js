@@ -14,7 +14,6 @@ function senResponse(res, type, data, status = 200) {
 
 router.use((req, res, next) => {
   const token = req.headers["access-token"];
-
   if (token) {
     jwt.verify(token, config.server.jwtKey, (err, decoded) => {
       if (err) {

@@ -1,4 +1,5 @@
 const model = require("../models/person");
+const modelUser = require("../models/user");
 const modelRole = require("../models/role");
 
 function senResponse(res, type, data, status = 200) {
@@ -7,6 +8,22 @@ function senResponse(res, type, data, status = 200) {
     data: data,
   };
   return res.status(status).send(result);
+}
+
+async function generateUserName(identityDocument, roleId, personId) {
+  const user = await modelUser.findOne({ userName: identityDocument });
+  if (!user) {
+    const newUser = new modelUser({
+      userName: identityDocument,
+      password: identityDocument,
+      role: roleId,
+      person: personId,
+    });
+    await newUser.save();
+    return { userName: identityDocument, password: identityDocument };
+  } else {
+    return { userName: "", password: "" };
+  }
 }
 
 exports.create = async (req, res) => {
@@ -19,9 +36,15 @@ exports.create = async (req, res) => {
     });
 
     if (!found) {
-      const user = new model(body);
-      const result = await user.save();
-      senResponse(res, "ok", result, 201);
+      const person = new model(body);
+      const result = await person.save();
+      // Asignar usuario por defecto
+      generateUserName(body.identityDocument, role.id, result.id).then(
+        (user) => {
+          result._doc.user = user;
+          senResponse(res, "ok", result, 201);
+        }
+      );
     } else {
       const result = await model.findByIdAndUpdate(found.id, body, {
         new: true,
@@ -34,15 +57,15 @@ exports.create = async (req, res) => {
 };
 
 exports.updateById = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const people = await model
-      .findByIdAndUpdate(id, req.body, { new: true })
-      .populate("role");
-    senResponse(res, "ok", people);
-  } catch (error) {
-    senResponse(res, "error", error, 500);
-  }
+  // try {
+  const id = req.params.id;
+  const people = await model
+    .findByIdAndUpdate(id, req.body, { new: true })
+    .populate("role");
+  senResponse(res, "ok", people);
+  // } catch (error) {
+  //   senResponse(res, "error", error, 500);
+  // }
 };
 
 exports.getAll = async (req, res) => {

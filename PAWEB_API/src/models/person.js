@@ -11,6 +11,7 @@ const schema = new mongoose.Schema(
     city: { type: String, uppercase: true, trim: true },
     contract: { type: String, uppercase: true, trim: true, default: null },
     roleName: { type: String },
+    active: { type: Boolean, default: true },
     role: { ref: "Role", type: mongoose.Schema.Types.ObjectId },
   },
   {
@@ -21,6 +22,37 @@ const schema = new mongoose.Schema(
     strict: false,
   }
 );
+
+schema.pre("findOneAndUpdate", async function (next) {
+  const body = this.getUpdate();
+  // Si llega el rol, entonces se hace la actualización sobre el usuario
+  if (!body.roleName) {
+    next();
+    return;
+  }
+  // Actualizar el rol del usuario
+  const id = this.getFilter();
+  if (id) {
+    // Consultar la persona
+    const p = await this.model.findById(id);
+    // Consultar el usuario por número de documento
+    const modelUser = require("../models/user");
+    const user = await modelUser
+      .findOne({ userName: p.identityDocument })
+      .populate("role");
+    // Validar si el rol es diferente al que ingresa, si es así se actualiza
+    if (body.roleName == user.role.roleName) {
+      // Consultar id del rol
+      const modelRole = require("../models/role");
+      const role = await modelRole.findOne({ roleName: body.roleName });
+      user.role = role._id;
+      await modelUser
+        .findByIdAndUpdate({ _id: user.id }, user, { new: true })
+        .populate("role");
+    }
+  }
+  next();
+});
 
 schema.virtual("fullName").get(function () {
   return [this.firstName, this.lastName].filter(Boolean).join(" ");
