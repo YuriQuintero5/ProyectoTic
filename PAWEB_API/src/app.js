@@ -22,6 +22,7 @@ app.use(express.json());
 app.use("/", routes.router);
 app.use("/person", routes.personRouter);
 app.use("/login", routes.authRouter);
+app.use("/user", routes.userRouter);
 
 // Iniciar el server
 app.listen(app.get("port"), () => {
