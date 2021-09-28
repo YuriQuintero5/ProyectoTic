@@ -12,7 +12,10 @@ function senResponse(res, type, data, status = 200) {
 router.use((req, res, next) => {
   const decoded = req.decoded;
   if (decoded) {
-    if (decoded.role.roleName == "Asesor comercial") {
+    if (
+      decoded.role.roleName == "Administrador" ||
+      decoded.role.roleName == "Asesor comercial"
+    ) {
       next();
     } else {
       return senResponse(

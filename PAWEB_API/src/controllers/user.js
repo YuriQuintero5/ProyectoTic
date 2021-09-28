@@ -40,6 +40,11 @@ exports.updateById = async (req, res) => {
     const user = await model
       .findByIdAndUpdate(id, req.body, { new: true })
       .populate("role");
+
+    if (user == null) {
+      throw "Id no encontrado";
+    }
+
     senResponse(res, "ok", user);
   } catch (error) {
     senResponse(res, "error", error, 500);

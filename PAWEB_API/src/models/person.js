@@ -3,7 +3,12 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema(
   {
     identityType: { type: String, uppercase: true, trim: true },
-    identityDocument: { type: String, unique: true, trim: true, index: true },
+    identityDocument: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
     firstName: { type: String, uppercase: true, trim: true },
     lastName: { type: String, uppercase: true, trim: true },
     address: { type: String, uppercase: true, trim: true },
