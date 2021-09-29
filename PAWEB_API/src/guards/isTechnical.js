@@ -14,6 +14,7 @@ router.use((req, res, next) => {
   if (decoded) {
     if (
       decoded.role.roleName == "Administrador" ||
+      decoded.role.roleName == "Coordinador técnico" ||
       decoded.role.roleName == "Técnico"
     ) {
       next();

@@ -18,6 +18,15 @@ const schema = new mongoose.Schema(
     roleName: { type: String },
     active: { type: Boolean, default: true },
     role: { ref: "Role", type: mongoose.Schema.Types.ObjectId },
+    machine: [
+      {
+        entryType: { type: String, default: null },
+        entryDate: { type: Date, default: null },
+        leaveDate: { type: Date, default: null },
+        active: { type: Boolean, default: true },
+        machine: { ref: "Machine", type: mongoose.Schema.Types.ObjectId },
+      },
+    ],
   },
   {
     timestamps: false,

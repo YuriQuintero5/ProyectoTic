@@ -2,6 +2,7 @@ const model = require("../models/machine");
 const person = require("../models/person");
 const modelUser = require("../models/user");
 const modelRole = require("../models/role");
+const moment = require("moment");
 
 function senResponse(res, type, data, status = 200) {
   const result = {
@@ -52,12 +53,69 @@ exports.updateById = async (req, res) => {
   try {
     const id = req.params.id;
     if (req.body.status) {
-      if (req.body.status != "Almacén" && req.body.status != "Cuarentena") {
-        throw "Los estados permitidos son: Almacén y Cuarentena";
+      if (
+        req.body.status != "Almacén" &&
+        req.body.status != "Cuarentena" &&
+        req.body.status != "Revisión" &&
+        req.body.status != "Baja"
+      ) {
+        throw "Los estados permitidos son: Almacén, Cuarentena, Revisión y Baja";
       }
     }
 
     const machine = await model.findByIdAndUpdate(id, req.body, { new: true });
+    if (machine == null) {
+      throw "Id no encontrado";
+    }
+    senResponse(res, "ok", machine);
+  } catch (error) {
+    senResponse(res, "error", error, 500);
+  }
+};
+
+exports.updateByIdReview = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (req.body.status) {
+      if (
+        req.body.status != "Almacén" &&
+        req.body.status != "Cuarentena" &&
+        req.body.status != "Revisión" &&
+        req.body.status != "Baja"
+      ) {
+        throw "Los estados permitidos son: Almacén, Cuarentena, Revisión y Baja";
+      }
+    }
+
+    let machine = await model.findById(id);
+    if (machine == null) {
+      throw "Id no encontrado";
+    }
+    if (req.body.status) {
+      machine.status = req.body.status;
+    }
+    let reviews = machine.reviews;
+    let index = -1;
+    reviews.forEach((e, idx) => {
+      if (
+        moment(e.reviewDate).format("YYYY-MM-DD") ==
+        moment(req.body.reviewDate).format("YYYY-MM-DD")
+      ) {
+        index = idx;
+      }
+    });
+    // Nueva revisión
+    if (index == -1) {
+      machine.reviews.push(req.body);
+    } else {
+      // Actualizar revisión
+      reviews[index].reason = req.body.reason;
+      reviews[index].diagnostic = req.body.diagnostic;
+      reviews[index].accesories = req.body.accesories;
+      reviews[index].peripherals = req.body.peripherals;
+    }
+
+    machine = await model.findByIdAndUpdate(id, machine, { new: true });
     if (machine == null) {
       throw "Id no encontrado";
     }
