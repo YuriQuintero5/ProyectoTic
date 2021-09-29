@@ -1,6 +1,7 @@
 const model = require("../models/person");
 const modelUser = require("../models/user");
 const modelRole = require("../models/role");
+const moment = require("moment");
 
 function senResponse(res, type, data, status = 200) {
   const result = {
@@ -58,10 +59,73 @@ exports.updateById = async (req, res) => {
     const id = req.params.id;
     const people = await model
       .findByIdAndUpdate(id, req.body, { new: true })
-      .populate("role");
+      .populate(["role", "machine.machine"]);
+
     if (people == null) {
       throw "Id no encontrado";
     }
+
+    senResponse(res, "ok", people);
+  } catch (error) {
+    senResponse(res, "error", error, 500);
+  }
+};
+
+exports.addMachineByPersonId = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const actualPerson = await model.findById(id);
+    //#region Validaciones
+    if (actualPerson == null) {
+      throw "El tercero no existe";
+    }
+    if (actualPerson.roleName != "Cliente") {
+      throw "Los equipos sólo pueden ser asignados a un tercero tipo cliente";
+    }
+    if (req.body.entryType) {
+      if (
+        req.body.entryType != "Venta" &&
+        req.body.entryType != "Comodato" &&
+        req.body.entryType != "Préstamo"
+      ) {
+        throw "Los tipos en entrega permitidos son: Venta, Comodato y Préstamo";
+      }
+    }
+    //#endregion
+
+    //#region Actulaizar un equipo asignado al cliente
+    let index = -1;
+    let machines = actualPerson.machine;
+    machines.forEach((e, idx) => {
+      if (e.machine.toString() == req.body.machine) {
+        index = idx;
+      }
+    });
+    // Si existe lo actualiza
+    if (index >= 0) {
+      if (req.body.entryDate) {
+        machines[index].entryDate = moment(req.body.entryDate).format(
+          "YYYY-MM-DD"
+        );
+      }
+      if (req.body.leaveDate) {
+        machines[index].leaveDate = moment(req.body.leaveDate).format(
+          "YYYY-MM-DD"
+        );
+      }
+      if (req.body.hasOwnProperty("active")) {
+        machines[index].active = req.body.active;
+      }
+    } else {
+      // Si no existe lo agrega
+      actualPerson.machine.push(req.body);
+    }
+    //#endregion
+
+    // Actualizar cliente con la asignación del equipo
+    const people = await model
+      .findByIdAndUpdate(id, actualPerson, { new: true })
+      .populate(["role", "machine.machine"]);
 
     senResponse(res, "ok", people);
   } catch (error) {
@@ -86,7 +150,9 @@ exports.getAll = async (req, res) => {
     if (roleName) {
       filter.roleName = roleName;
     }
-    const people = await model.find(filter).populate("role");
+    const people = await model
+      .find(filter)
+      .populate(["role", "machine.machine"]);
     senResponse(res, "ok", people);
   } catch (error) {
     senResponse(res, "error", error, 500);
@@ -96,7 +162,9 @@ exports.getAll = async (req, res) => {
 exports.getById = async (req, res) => {
   try {
     const id = req.params.id;
-    const people = await model.findById({ _id: id }).populate("role");
+    const people = await model
+      .findById({ _id: id })
+      .populate(["role", "machine.machine"]);
     senResponse(res, "ok", people);
   } catch (error) {
     senResponse(res, "error", error, 500);

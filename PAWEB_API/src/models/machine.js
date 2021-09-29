@@ -12,7 +12,7 @@ const schema = new mongoose.Schema(
     manufacturer: { type: String, uppercase: true, trim: true, default: null },
     active: { type: Boolean, default: true },
     status: { type: String, default: "Almacén", required: true }, //status: [Almacén, Cuarentena]
-    review: [],
+    reviews: [],
   },
   {
     timestamps: false,
