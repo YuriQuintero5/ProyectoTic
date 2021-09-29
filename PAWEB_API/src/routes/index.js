@@ -1,4 +1,18 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const personRouter = require("./person");
+const authRouter = require("./auth");
+const userRouter = require("./user");
+const machineRouter = require("./machine");
 
-module.exports = router
+router.get("/", (req, res) => {
+  res.json("Conectado");
+});
+
+module.exports = {
+  authRouter,
+  personRouter,
+  router,
+  userRouter,
+  machineRouter,
+};

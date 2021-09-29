@@ -1,8 +1,8 @@
 const express = require("express");
-const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
 const setup = require("./setup");
+const path = require("path");
 const config = require(path.resolve("config.json"));
 
 const app = express();
@@ -16,10 +16,14 @@ app.set("port", process.env.port || config.server.port);
 // Librerías Midllewares
 app.use(morgan("dev"));
 app.use(cors());
-app.use(express.json);
+app.use(express.json());
 
 // Rutas
-app.use("/", routes);
+app.use("/", routes.router);
+app.use("/machine", routes.machineRouter);
+app.use("/person", routes.personRouter);
+app.use("/login", routes.authRouter);
+app.use("/user", routes.userRouter);
 
 // Iniciar el server
 app.listen(app.get("port"), () => {

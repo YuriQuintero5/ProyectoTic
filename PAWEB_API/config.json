@@ -3,10 +3,12 @@
         "connectionString":"mongodb+srv://admin:7SknlYVK8rvl3RdW@cluster0.mzng7.mongodb.net/paweb?retryWrites=true&w=majority",
         "dataBase":"paweb",
         "admin": "admin",
-        "password": "7SknlYVK8rvl3RdW"
+        "password": "12345"
     },
     "server": {
-        "port": 3000
+        "port": 3000,
+        "jwtKey": "!!!EstaesLaClaveBackParaelJsonWebToken2021**",
+        "jwtKeyExpiresIn": 86400
     },
     "roles": ["Administrador", "Técnico", "Asesor comercial", "Coordinador técnico", "Cliente", "Compras"],
     "setupUser": {
