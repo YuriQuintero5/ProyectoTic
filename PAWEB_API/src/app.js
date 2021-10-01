@@ -24,6 +24,7 @@ app.use("/machine", routes.machineRouter);
 app.use("/person", routes.personRouter);
 app.use("/login", routes.authRouter);
 app.use("/user", routes.userRouter);
+app.use("/role", routes.roleRouter);
 
 // Iniciar el server
 app.listen(app.get("port"), () => {

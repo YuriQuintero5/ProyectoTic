@@ -45,7 +45,7 @@ exports.create = async (req, res) => {
     const result = await machine.save();
     senResponse(res, "ok", result);
   } catch (error) {
-    senResponse(res, "error", error, 500);
+    senResponse(res, "error", error);
   }
 };
 
@@ -69,7 +69,7 @@ exports.updateById = async (req, res) => {
     }
     senResponse(res, "ok", machine);
   } catch (error) {
-    senResponse(res, "error", error, 500);
+    senResponse(res, "error", error);
   }
 };
 
@@ -121,7 +121,7 @@ exports.updateByIdReview = async (req, res) => {
     }
     senResponse(res, "ok", machine);
   } catch (error) {
-    senResponse(res, "error", error, 500);
+    senResponse(res, "error", error);
   }
 };
 
@@ -143,7 +143,7 @@ exports.getAll = async (req, res) => {
     const machine = await model.find(filter);
     senResponse(res, "ok", machine);
   } catch (error) {
-    senResponse(res, "error", error, 500);
+    senResponse(res, "error", error);
   }
 };
 
@@ -153,7 +153,7 @@ exports.getById = async (req, res) => {
     const machine = await model.findById({ _id: id });
     senResponse(res, "ok", machine);
   } catch (error) {
-    senResponse(res, "error", error, 500);
+    senResponse(res, "error", error);
   }
 };
 
@@ -163,6 +163,6 @@ exports.deleteById = async (req, res) => {
     const machine = await model.findByIdAndRemove(id);
     senResponse(res, "ok", machine);
   } catch (error) {
-    senResponse(res, "error", error, 500);
+    senResponse(res, "error", error);
   }
 };
