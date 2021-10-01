@@ -3,6 +3,7 @@ const modelPerson = require("../models/person");
 const modelRole = require("../models/role");
 
 function senResponse(res, type, data, status = 200) {
+  data.password = "";
   const result = {
     type: type,
     data: data,
@@ -10,29 +11,20 @@ function senResponse(res, type, data, status = 200) {
   return res.status(status).send(result);
 }
 
-// exports.create = async (req, res) => {
-//   try {
-//     const body = req.body;
-//     const role = await modelRole.findOne({ roleName: req.body.roleName });
-//     body.role = role.id;
-//     const found = await model.findOne({
-//       identityDocument: body.identityDocument,
-//     });
+exports.create = async (req, res) => {
+  try {
+    const oldUser = await model.findOne({ userName: req.body.userName });
+    if (oldUser) {
+      return senResponse(res, "error", "El usuario ya existe");
+    }
 
-//     if (!found) {
-//       const user = new model(body);
-//       const result = await user.save();
-//       senResponse(res, "ok", result, 201);
-//     } else {
-//       const result = await model.findByIdAndUpdate(found.id, body, {
-//         new: true,
-//       });
-//       senResponse(res, "ok", result);
-//     }
-//   } catch (error) {
-//     senResponse(res, "error", error, 500);
-//   }
-// };
+    const newUser = new model(req.body);
+    const user = await newUser.save();
+    senResponse(res, "ok", user);
+  } catch (error) {
+    senResponse(res, "error", error, 500);
+  }
+};
 
 exports.updateById = async (req, res) => {
   try {

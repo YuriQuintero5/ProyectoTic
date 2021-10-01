@@ -1,6 +1,7 @@
 const model = require("../models/person");
 const modelUser = require("../models/user");
 const modelRole = require("../models/role");
+const modelMachine = require("../models/machine");
 const moment = require("moment");
 
 function senResponse(res, type, data, status = 200) {
@@ -92,6 +93,13 @@ exports.addMachineByPersonId = async (req, res) => {
       }
     }
     //#endregion
+    const foundMachine = await modelMachine.findById(req.body.machine);
+    if (foundMachine == null) {
+      throw "El equipo no existe";
+    }
+    //#region Validar si el equipo existe
+
+    //#endregion
 
     //#region Actulaizar un equipo asignado al cliente
     let index = -1;
@@ -129,7 +137,7 @@ exports.addMachineByPersonId = async (req, res) => {
 
     senResponse(res, "ok", people);
   } catch (error) {
-    senResponse(res, "error", error, 500);
+    senResponse(res, "error", error);
   }
 };
 
@@ -139,13 +147,25 @@ exports.getAll = async (req, res) => {
     // Filtrar por identificaión, nombre y/o rol
     let filter = {};
     if (identityDocument) {
-      filter.identityDocument = { $regex: `.*${identityDocument}.*` };
+      if (identityDocument.indexOf("=") != 0) {
+        filter.identityDocument = { $regex: `.*${identityDocument}.*` };
+      } else {
+        filter.identityDocument = identityDocument.substring(1);
+      }
     }
     if (firstName) {
-      filter.firstName = { $regex: `.*${firstName}.*` };
+      if (firstName.indexOf("=") != 0) {
+        filter.firstName = { $regex: `.*${firstName}.*` };
+      } else {
+        filter.firstName = firstName.substring(1);
+      }
     }
     if (lastName) {
-      filter.lastName = { $regex: `.*${lastName}.*` };
+      if (lastName.indexOf("=") != 0) {
+        filter.lastName = { $regex: `.*${lastName}.*` };
+      } else {
+        filter.lastName = lastName.substring(1);
+      }
     }
     if (roleName) {
       filter.roleName = roleName;
