@@ -125,6 +125,61 @@ exports.updateByIdReview = async (req, res) => {
   }
 };
 
+exports.updateByIdFail = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (req.body.status) {
+      if (
+        req.body.status != "Garantía" &&
+        req.body.status != "Devolución" &&
+        req.body.status != "Reparación"
+      ) {
+        throw "Los estados permitidos son: Garantia, Devolución y Reparación";
+      }
+    }
+
+    let machine = await model.findById(id);
+    if (machine == null) {
+      throw "Id no encontrado";
+    }
+    // if (req.body.status) {
+    //   machine.status = req.body.status;
+    // }
+    let fails = machine.fails;
+    let index = -1;
+    fails.forEach((e, idx) => {
+      if (
+        moment(e.failDate).format("YYYY-MM-DD") ==
+        moment(req.body.failDate).format("YYYY-MM-DD")
+      ) {
+        index = idx;
+      }
+    });
+    // Nuevo registro de daño
+    if (index == -1) {
+      machine.fails.push(req.body);
+    } else {
+      // Actualizar daño
+      fails[index].reason = req.body.reason;
+      fails[index].diagnostic = req.body.diagnostic;
+      fails[index].accesories = req.body.accesories;
+      fails[index].peripherals = req.body.peripherals;
+      fails[index].invoice = req.body.invoice;
+      fails[index].userName = req.body.userName;
+      fails[index].workerName = req.body.workerName;
+      fails[index].status = req.body.status;
+    }
+
+    machine = await model.findByIdAndUpdate(id, machine, { new: true });
+    if (machine == null) {
+      throw "Id no encontrado";
+    }
+    senResponse(res, "ok", machine);
+  } catch (error) {
+    senResponse(res, "error", error);
+  }
+};
+
 exports.getAll = async (req, res) => {
   try {
     let filter = req.query;
