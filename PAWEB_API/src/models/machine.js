@@ -13,6 +13,7 @@ const schema = new mongoose.Schema(
     active: { type: Boolean, default: true },
     status: { type: String, default: "Almacén", required: true }, //status: [Almacén, Cuarentena]
     reviews: [],
+    fails: [],
   },
   {
     timestamps: false,
