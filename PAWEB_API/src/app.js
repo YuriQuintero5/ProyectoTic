@@ -23,6 +23,7 @@ app.use("/", routes.router);
 app.use("/machine", routes.machineRouter);
 app.use("/person", routes.personRouter);
 app.use("/login", routes.authRouter);
+app.use("/send", routes.authRouter);
 app.use("/user", routes.userRouter);
 app.use("/role", routes.roleRouter);
 
