@@ -67,6 +67,13 @@
                     icon: 'ni ni-circle-08 text-pink'
                   }">
         </sidebar-item>
+        <sidebar-item
+                  :link="{
+                    name: 'Test',
+                    path: '/apiTest',
+                    icon: 'ni ni-circle-08 text-pink'
+                  }">
+        </sidebar-item>
         
       </template>
     </side-bar>

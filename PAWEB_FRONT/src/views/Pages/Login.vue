@@ -6,9 +6,9 @@
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for
-                free.</p>
+              <h1 class="text-white">Bienvenido</h1>
+              <p class="text-lead text-white">PAWEB
+                </p>
             </b-col>
           </b-row>
         </div>
@@ -40,27 +40,27 @@
             </b-card-header>
             <b-card-body class="px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+                <small>Iniciar Sesion</small>
               </div>
               <validation-observer v-slot="{handleSubmit}" ref="formValidator">
                 <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                   <base-input alternative
                               class="mb-3"
-                              name="Email"
+                              name="Usuario"
                               :rules="{required: true, email: true}"
-                              prepend-icon="ni ni-email-83"
-                              placeholder="Email"
-                              v-model="model.email">
+                              prepend-icon="ni ni-usuario-83"
+                              placeholder="Usuario"
+                              v-model="model.usuario">
                   </base-input>
 
                   <base-input alternative
                               class="mb-3"
-                              name="Password"
+                              name="Clave"
                               :rules="{required: true, min: 6}"
                               prepend-icon="ni ni-lock-circle-open"
-                              type="password"
-                              placeholder="Password"
-                              v-model="model.password">
+                              type="clave"
+                              placeholder="Clave"
+                              v-model="model.clave">
                   </base-input>
 
                   <b-form-checkbox v-model="model.rememberMe">Remember me</b-form-checkbox>
