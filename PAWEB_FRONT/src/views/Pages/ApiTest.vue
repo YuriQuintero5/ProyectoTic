@@ -188,10 +188,10 @@ export default {
       // Buscar por role
       params = { roleName: "Cliente" };
       // Buscar por número de identificación que contenga un número
-      params = { identityDocument: "123" };
+      // params = { identityDocument: "123" };
       // Buscar por número de identificación exacta
-      params = { identityDocument: "=123" };
-      params = {};
+      // params = { identityDocument: "=123" };
+      // params = {};
 
       api.person
         .getAll(params)
