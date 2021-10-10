@@ -4,6 +4,11 @@ import { restApi } from '../plugins/axios'
 import SecureLS from 'secure-ls'
 
 let ls = new SecureLS()
+const headers = {
+	Accept: "application/json",
+	"Content-Type": "application/json",
+	"access-token": ls.get('tokenKey').token
+  };
 /* The login action(function) first param is the vuex commit destructured object, 
 second is userData which is passed from where-ever you call that action.
 You then create a promise in the "login"'s return which is where we put the code
@@ -38,7 +43,7 @@ async function login({ commit }, userData) {
 			return response
 		})
 		.catch((err) => {
-			console.log('login error' + err)
+			console.log(`login error ${err}`)
 			commit('auth_error')
 			ls.remove('token')
 		})
@@ -46,8 +51,52 @@ async function login({ commit }, userData) {
   return response
 }
 
+async function createPerson({ commit }, userData) {
+	let response = await restApi
+		.post('person', userData, { headers: headers })
+		.then((response) => {
+			console.log(response)
+			//commit('auth_success', { token, user })
+		})
+		.catch((err) => {
+			console.log(`create person error ${err}`)
+			//commit('auth_error')
+		})
+		
+  return response
+}
+
+async function getPerson({ commit }, id) {
+	let params = { identityDocument: id };
+
+	let response = await restApi
+		.get('person', { params, headers: headers })
+		.then((response) => response.data)
+		.catch((err) => {
+			console.log(`get person error ${err}`)
+			//commit('auth_error')
+		})
+		
+  return response
+}
+
+async function updatePerson({ commit }, userData) {
+	let response = await restApi
+		.put(`person/${userData.id}`, userData, { headers: headers })
+		.then((response) => response.data)
+		.catch((err) => {
+			console.log(`update person error ${err}`)
+			//commit('auth_error')
+		})
+		
+  return response
+}
+
 export default {
 	login,
+	createPerson,
+	getPerson,
+	updatePerson,
 	logout({ commit }) {
 		return new Promise((resolve, reject) => {
 			commit('logout')

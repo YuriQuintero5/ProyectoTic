@@ -67,8 +67,13 @@ export default {
 				{
 					to: "/",
 					icon: "mdi-view-dashboard",
-					text: "Home",
+					text: "Inicio",
 					
+				},
+				{
+					to: "/tercero",
+					icon: "mdi-account",
+					text: "Tercero",
 				},
 				{
 					to: "/user",
