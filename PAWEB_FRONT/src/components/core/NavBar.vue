@@ -40,7 +40,7 @@
 		data() {
 			return {
 				//if the app is on mobile devices it changes the title
-				title: this.$vuetify.breakpoint.mobile ? ' M-Dashboard' : 'M-Dashboard by Materialfy',
+				title: this.$vuetify.breakpoint.mobile ? 'PAWEB' : 'PAWEB',
 				group: null,
 				message: null,
 				btnColor: 'tertiary',

@@ -4,6 +4,11 @@ import NProgress from "nprogress";
 import SecureLS from 'secure-ls'
 
 let ls = new SecureLS()
+const headers = {
+	Accept: "application/json",
+	"Content-Type": "application/json",
+	"access-token": ls.get('tokenKey').token
+  };
 
 // state set to the previous token, the authorization Axios header set to same
 const token = ls.get('tokenKey')
@@ -14,9 +19,7 @@ const token = ls.get('tokenKey')
 const restApi = axios.create({
 	baseURL: 'http://localhost:3000/',
 	timeout: 3000,
-	headers: {
-		Authorization: 'Bearer ' + token,
-	},
+	headers: headers,
 })
 // Sets the default global url used by all of this axios instance's requests
  const genericApi = axios.create({
@@ -25,7 +28,7 @@ const restApi = axios.create({
 		headers: {},
  })
  if (token) {
-		restApi.defaults.headers.common['Authorization'] = 'Bearer ' + token
+		restApi.defaults.headers.common['access-token'] = token.token
  }
  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
  restApi.defaults.headers.post['Access-Control-Allow-Origin'] = '*'

@@ -23,7 +23,7 @@ core-Side-Drawer is core/toolbar.vue etc -->
 		name: "DashboardView",
 		metaInfo() {
 			return {
-				title: "M-Dashboard by Materialfy.",
+				title: "Inicio",
 			};
 		},
 		computed: {
