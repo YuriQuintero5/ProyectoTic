@@ -1,0 +1,2015 @@
+{
+	"info": {
+		"_postman_id": "65d91d2a-622b-4e59-9d7e-30d488f3638c",
+		"name": "PAWEB_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Terceros",
+			"item": [
+				{
+					"name": "Tercero Todos / Rol",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Asesor comercial",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero por identificación",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person?roleName=Asesor comercial&identityDocument=2&firstName=o&lastName=o",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Asesor comercial"
+								},
+								{
+									"key": "identityDocument",
+									"value": "2"
+								},
+								{
+									"key": "firstName",
+									"value": "o"
+								},
+								{
+									"key": "lastName",
+									"value": "o"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person/6152a75232a19d2ab99eb82f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person",
+								"6152a75232a19d2ab99eb82f"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identityType\": \"CC\",\r\n    \"identityDocument\": \"94325212\",\r\n    \"firstName\": \"Diego Fernando\",\r\n    \"lastName\": \"Orozco Quintero\",\r\n    \"address\": \"Cra 18A # 26A - 04\",\r\n    \"phone\": \"3166242600\",\r\n    \"city\": \"Palmira\",\r\n    \"roleName\": \"Cliente\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero Asesor comercial",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identityType\": \"CC\",\r\n    \"identityDocument\": \"123\",\r\n    \"firstName\": \"Yo soy\",\r\n    \"lastName\": \"Asesor comercial\",\r\n    \"address\": \"Cra 18A # 26A - 04\",\r\n    \"phone\": \"3166242600\",\r\n    \"city\": \"Palmira\",\r\n    \"roleName\": \"Asesor comercial\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "access-token",
+										"value": "{{tokenPAWEB}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"identityType\": \"CC\",\r\n    \"identityDocument\": \"123\",\r\n    \"firstName\": \"Yo soy\",\r\n    \"lastName\": \"Asesor comercial\",\r\n    \"address\": \"Cra 18A # 26A - 04\",\r\n    \"phone\": \"3166242600\",\r\n    \"city\": \"Palmira\",\r\n    \"roleName\": \"Asesor comercial\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/person",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"person"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "412"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19c-8AMsKx7b8gHg8KSRskyOXwkK3bU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 25 Sep 2021 03:57:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"identityType\": \"CC\",\n        \"identityDocument\": \"123\",\n        \"firstName\": \"YO SOY\",\n        \"lastName\": \"ASESOR COMERCIAL\",\n        \"address\": \"CRA 18A # 26A - 04\",\n        \"phone\": \"3166242600\",\n        \"city\": \"PALMIRA\",\n        \"contract\": null,\n        \"roleName\": \"Asesor comercial\",\n        \"role\": \"6142be220ef498b6971e4d7d\",\n        \"_id\": \"614e9e1c786a2d5710cd16a9\",\n        \"user\": {\n            \"userName\": \"123\",\n            \"password\": \"123\"\n        },\n        \"fullName\": \"YO SOY ASESOR COMERCIAL\",\n        \"id\": \"614e9e1c786a2d5710cd16a9\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Tercero Coordinador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identityType\": \"CC\",\r\n    \"identityDocument\": \"1234\",\r\n    \"firstName\": \"Yo soy\",\r\n    \"lastName\": \"Coordinador técnico\",\r\n    \"address\": \"Cra 18A # 26A - 04\",\r\n    \"phone\": \"3166242600\",\r\n    \"city\": \"Palmira\",\r\n    \"roleName\": \"Coordinador técnico\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero Técnico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identityType\": \"CC\",\r\n    \"identityDocument\": \"123456\",\r\n    \"firstName\": \"Yo soy\",\r\n    \"lastName\": \"Técnico\",\r\n    \"address\": \"Cra 18A # 26A - 04\",\r\n    \"phone\": \"3166242600\",\r\n    \"city\": \"Palmira\",\r\n    \"roleName\": \"Técnico\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero Compras",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identityType\": \"CC\",\r\n    \"identityDocument\": \"12345\",\r\n    \"firstName\": \"Yo soy\",\r\n    \"lastName\": \"Compras\",\r\n    \"address\": \"Cra 18A # 26A - 04\",\r\n    \"phone\": \"3166242600\",\r\n    \"city\": \"Palmira\",\r\n    \"roleName\": \"Compras\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero Asignar Equipo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"entryType\": \"Venta\",\r\n    \"entryDate\": \"2021-08-22\",\r\n    \"active\": true,\r\n    \"machine\": \"6153c038ace74731b518418d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person/machine/6152a75232a19d2ab99eb82f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person",
+								"machine",
+								"6152a75232a19d2ab99eb82f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero Eliminar Equipo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"leaveDate\": \"2021-09-21\",\r\n    \"active\": false,\r\n    \"machine\": \"6153c038ace74731b518418d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person/machine/6152a75232a19d2ab99eb82f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person",
+								"machine",
+								"6152a75232a19d2ab99eb82f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tercero Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"machine\":[]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person/6152a75232a19d2ab99eb82f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person",
+								"6152a75232a19d2ab99eb82f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "access-token",
+										"value": "{{tokenPAWEB}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"machine\":[]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/person/6152a75232a19d2ab99eb82f",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"person",
+										"6152a75232a19d2ab99eb82f"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "435"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b3-qEUXFATIzggBcyLKYyRzqGS8gbU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Sep 2021 01:43:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"_id\": \"6152a75232a19d2ab99eb82f\",\n        \"identityType\": \"CC\",\n        \"identityDocument\": \"94325212\",\n        \"firstName\": \"DIEGO FERNANDO\",\n        \"lastName\": \"OROZCO QUINTERO\",\n        \"address\": \"CRA 18A # 26A - 04\",\n        \"phone\": \"3166242600\",\n        \"city\": \"PALMIRA\",\n        \"contract\": null,\n        \"roleName\": \"Cliente\",\n        \"active\": true,\n        \"role\": {\n            \"_id\": \"6142be220ef498b6971e4d7f\",\n            \"roleName\": \"Cliente\"\n        },\n        \"machine\": [],\n        \"fullName\": \"DIEGO FERNANDO OROZCO QUINTERO\",\n        \"id\": \"6152a75232a19d2ab99eb82f\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Inactivar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"active\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/person/614e88ce02a6ff3c5a8f38e9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"person",
+								"614e88ce02a6ff3c5a8f38e9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"123\",\r\n    \"password\": \"123\",\r\n    \"role\": \"6142be220ef498b6971e4d7d\",\r\n    \"person\": \"6152a75832a19d2ab99eb836\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/role",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"role"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/role/6142be220ef498b6971e4d7b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"role",
+								"6142be220ef498b6971e4d7b"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/6144fd421767363ebe1d0a43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"6144fd421767363ebe1d0a43"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"94325212\",\r\n    \"password\": \"94325212\",\r\n    \"active\": true,\r\n    \"role\": \"6142be220ef498b6971e4d7f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/614e88ce02a6ff3c5a8f38ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"614e88ce02a6ff3c5a8f38ec"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/614e87d517c690ad8e54c79a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"614e87d517c690ad8e54c79a"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "Cliente",
+									"disabled": true
+								},
+								{
+									"key": "roleName",
+									"value": "Administrador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Equipos",
+			"item": [
+				{
+					"name": "Equipos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine"
+							],
+							"query": [
+								{
+									"key": "active",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "serial",
+									"value": "1234567890",
+									"disabled": true
+								},
+								{
+									"key": "machineName",
+									"value": "A",
+									"disabled": true
+								},
+								{
+									"key": "accessories",
+									"value": "de",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Baja",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "access-token",
+										"value": "{{tokenPAWEB}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/machine",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"machine"
+									],
+									"query": [
+										{
+											"key": "active",
+											"value": "true",
+											"disabled": true
+										},
+										{
+											"key": "serial",
+											"value": "1234567890",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "484"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e4-wT1Rz2aRyQ00WCVUnaWU5zO/OW8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Sep 2021 13:21:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"ok\",\n    \"data\": [\n        {\n            \"_id\": \"6152a8f02f6cdee28bd85517\",\n            \"orderDate\": \"2021-09-24T00:00:00.000Z\",\n            \"serial\": \"1234567890\",\n            \"machineName\": \"BIMAG\",\n            \"description\": \"ermite a los estudiantes analizar la magnetoterapia, de forma que obtengan un mejor conocimiento de su funcionamiento y mecanismo interno\",\n            \"brand\": \"EDIBOND\",\n            \"accessories\": \"MOD: Modelo real del instrumento de magnetoterapia\",\n            \"peripherals\": \"Medidor de Gauss\",\n            \"manufacturer\": \"EDIBOND\",\n            \"active\": false,\n            \"id\": \"6152a8f02f6cdee28bd85517\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Equipo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine/6153b81839e7a37d5ae645a9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine",
+								"6153b81839e7a37d5ae645a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Equipo (Compras)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderDate\": \"2021-09-25\",\r\n    \"serial\": \"1234567890-2\",\r\n    \"machineName\": \"OTRO\",\r\n    \"description\": \"ermite a los estudiantes analizar la magnetoterapia, de forma que obtengan un mejor conocimiento de su funcionamiento y mecanismo interno\",\r\n    \"brand\": \"edibond\",\r\n    \"accessories\": \"Modelo real del instrumento de magnetoterapia\",\r\n    \"peripherals\": \"Medidor de Gauss\",\r\n    \"manufacturer\": \"edibond\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Equipo (Coordinador)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accessories\": \"MOD: Modelo real del instrumento de magnetoterapia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine/61533196767b42cef72b5176",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine",
+								"61533196767b42cef72b5176"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Equipo Review",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reviewDate\": \"2021-09-29\",\r\n    \"reason\": \"Motivo del estado\",\r\n    \"diagnostic\": \"Diagnóstico del daño\",\r\n    \"accesories\": \"Accesorios\",\r\n    \"peripherals\": \"Perefericos que lo acompaña 29\",\r\n    \"status\": \"Baja\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine/review/6153b81839e7a37d5ae645a9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine",
+								"review",
+								"6153b81839e7a37d5ae645a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Equipo Daño",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"failDate\": \"2021-09-29\",\r\n    \"reason\": \"Motivo del estado\",\r\n    \"accesories\": \"Accesorios\",\r\n    \"peripherals\": \"Perefericos que lo acompaña 29\",\r\n    \"status\": \"Garantía\",\r\n    \"invoice\": \"FC-000001\",\r\n    \"userName\": \"\",\r\n    \"workerName\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine/fail/6153b81839e7a37d5ae645a9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine",
+								"fail",
+								"6153b81839e7a37d5ae645a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Equipo Inactivar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"active\": true,\r\n    \"status\": \"Cuarentena\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine/61533196767b42cef72b5176",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine",
+								"61533196767b42cef72b5176"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Equipo",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "access-token",
+								"value": "{{tokenPAWEB}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/machine/61533196767b42cef72b5176",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"machine",
+								"61533196767b42cef72b5176"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.json().data.token.access_token;\r",
+							"pm.globals.set(\"tokenPAWEB\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"admin\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"admin\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "510"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1fe-o5vCKaEpKU3A4Hu877zg3LhvPzI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Sep 2021 03:57:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"id\": \"614e844f53bc28545007a318\",\n        \"userName\": \"admin\",\n        \"role\": {\n            \"_id\": \"6142be220ef498b6971e4d7b\",\n            \"roleName\": \"Administrador\"\n        },\n        \"person\": null,\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU4NDRmNTNiYzI4NTQ1MDA3YTMxOCIsInVzZXJOYW1lIjoiYWRtaW4iLCJyb2xlIjp7Il9pZCI6IjYxNDJiZTIyMGVmNDk4YjY5NzFlNGQ3YiIsInJvbGVOYW1lIjoiQWRtaW5pc3RyYWRvciJ9LCJwZXJzb24iOm51bGwsImlhdCI6MTYzMjU0MjIyMCwiZXhwIjoxNjMyNjI4NjIwfQ.cFygl5x65jSQxE-h78fHQmMSVjnbN0Wyt9HPgUK7AvA\",\n            \"expires_in\": 86400\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.json().data.token.access_token;\r",
+							"pm.globals.set(\"tokenPAWEB\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"94325212\",\r\n    \"password\": \"94325212\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"94325212\",\r\n    \"password\": \"94325212\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1329"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"531-Nnwxgr6MUBbcp3GMcprZIdjqNM4\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Sep 2021 03:47:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"id\": \"614e88ce02a6ff3c5a8f38ec\",\n        \"userName\": \"94325212\",\n        \"role\": {\n            \"_id\": \"6142be220ef498b6971e4d7f\",\n            \"roleName\": \"Cliente\"\n        },\n        \"person\": {\n            \"_id\": \"614e88ce02a6ff3c5a8f38e9\",\n            \"identityType\": \"CC\",\n            \"identityDocument\": \"94325212\",\n            \"firstName\": \"DIEGO FERNANDO\",\n            \"lastName\": \"OROZCO QUINTERO\",\n            \"address\": \"CRA 18A # 26A - 04\",\n            \"phone\": \"3166242600\",\n            \"city\": \"PALMIRA\",\n            \"contract\": null,\n            \"roleName\": \"Cliente\",\n            \"role\": \"6142be220ef498b6971e4d7f\",\n            \"fullName\": \"DIEGO FERNANDO OROZCO QUINTERO\",\n            \"id\": \"614e88ce02a6ff3c5a8f38e9\"\n        },\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU4OGNlMDJhNmZmM2M1YThmMzhlYyIsInVzZXJOYW1lIjoiOTQzMjUyMTIiLCJyb2xlIjp7Il9pZCI6IjYxNDJiZTIyMGVmNDk4YjY5NzFlNGQ3ZiIsInJvbGVOYW1lIjoiQ2xpZW50ZSJ9LCJwZXJzb24iOnsiX2lkIjoiNjE0ZTg4Y2UwMmE2ZmYzYzVhOGYzOGU5IiwiaWRlbnRpdHlUeXBlIjoiQ0MiLCJpZGVudGl0eURvY3VtZW50IjoiOTQzMjUyMTIiLCJmaXJzdE5hbWUiOiJESUVHTyBGRVJOQU5ETyIsImxhc3ROYW1lIjoiT1JPWkNPIFFVSU5URVJPIiwiYWRkcmVzcyI6IkNSQSAxOEEgIyAyNkEgLSAwNCIsInBob25lIjoiMzE2NjI0MjYwMCIsImNpdHkiOiJQQUxNSVJBIiwiY29udHJhY3QiOm51bGwsInJvbGVOYW1lIjoiQ2xpZW50ZSIsInJvbGUiOiI2MTQyYmUyMjBlZjQ5OGI2OTcxZTRkN2YiLCJmdWxsTmFtZSI6IkRJRUdPIEZFUk5BTkRPIE9ST1pDTyBRVUlOVEVSTyIsImlkIjoiNjE0ZTg4Y2UwMmE2ZmYzYzVhOGYzOGU5In0sImlhdCI6MTYzMjU0MTYyOSwiZXhwIjoxNjMyNjI4MDI5fQ.jKk2Ixiq_2g-5cAmaZ-nkS_4lvTG7rJM6wSS1VSUCVk\",\n            \"expires_in\": 86400\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Asesor comercial",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.json().data.token.access_token;\r",
+							"pm.globals.set(\"tokenPAWEB\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"123\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"123\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1315"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"523-PyTKEXZDtG3vrbfIG9s29GZWZ7Q\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Sep 2021 03:58:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"id\": \"614e9e1d786a2d5710cd16ac\",\n        \"userName\": \"123\",\n        \"role\": {\n            \"_id\": \"6142be220ef498b6971e4d7d\",\n            \"roleName\": \"Asesor comercial\"\n        },\n        \"person\": {\n            \"_id\": \"614e9e1c786a2d5710cd16a9\",\n            \"identityType\": \"CC\",\n            \"identityDocument\": \"123\",\n            \"firstName\": \"YO SOY\",\n            \"lastName\": \"ASESOR COMERCIAL\",\n            \"address\": \"CRA 18A # 26A - 04\",\n            \"phone\": \"3166242600\",\n            \"city\": \"PALMIRA\",\n            \"contract\": null,\n            \"roleName\": \"Asesor comercial\",\n            \"role\": \"6142be220ef498b6971e4d7d\",\n            \"fullName\": \"YO SOY ASESOR COMERCIAL\",\n            \"id\": \"614e9e1c786a2d5710cd16a9\"\n        },\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNGU5ZTFkNzg2YTJkNTcxMGNkMTZhYyIsInVzZXJOYW1lIjoiMTIzIiwicm9sZSI6eyJfaWQiOiI2MTQyYmUyMjBlZjQ5OGI2OTcxZTRkN2QiLCJyb2xlTmFtZSI6IkFzZXNvciBjb21lcmNpYWwifSwicGVyc29uIjp7Il9pZCI6IjYxNGU5ZTFjNzg2YTJkNTcxMGNkMTZhOSIsImlkZW50aXR5VHlwZSI6IkNDIiwiaWRlbnRpdHlEb2N1bWVudCI6IjEyMyIsImZpcnN0TmFtZSI6IllPIFNPWSIsImxhc3ROYW1lIjoiQVNFU09SIENPTUVSQ0lBTCIsImFkZHJlc3MiOiJDUkEgMThBICMgMjZBIC0gMDQiLCJwaG9uZSI6IjMxNjYyNDI2MDAiLCJjaXR5IjoiUEFMTUlSQSIsImNvbnRyYWN0IjpudWxsLCJyb2xlTmFtZSI6IkFzZXNvciBjb21lcmNpYWwiLCJyb2xlIjoiNjE0MmJlMjIwZWY0OThiNjk3MWU0ZDdkIiwiZnVsbE5hbWUiOiJZTyBTT1kgQVNFU09SIENPTUVSQ0lBTCIsImlkIjoiNjE0ZTllMWM3ODZhMmQ1NzEwY2QxNmE5In0sImlhdCI6MTYzMjU0MjMwOSwiZXhwIjoxNjMyNjI4NzA5fQ.ah3eJ8F9a_KeK8MJ2ENKnPrB8iEHwqrUbd4bOs8XIzE\",\n            \"expires_in\": 86400\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Coordinador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.json().data.token.access_token;\r",
+							"pm.globals.set(\"tokenPAWEB\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"1234\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"1234\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1389"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"56d-9kQf1I0Z3gvJUjZFNRezmJhV9Pc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Sep 2021 05:27:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"id\": \"6152a75e32a19d2ab99eb840\",\n        \"userName\": \"1234\",\n        \"role\": {\n            \"_id\": \"6142be220ef498b6971e4d7e\",\n            \"roleName\": \"Coordinador técnico\"\n        },\n        \"person\": {\n            \"_id\": \"6152a75d32a19d2ab99eb83d\",\n            \"identityType\": \"CC\",\n            \"identityDocument\": \"1234\",\n            \"firstName\": \"YO SOY\",\n            \"lastName\": \"COORDINADOR TÉCNICO\",\n            \"address\": \"CRA 18A # 26A - 04\",\n            \"phone\": \"3166242600\",\n            \"city\": \"PALMIRA\",\n            \"contract\": null,\n            \"roleName\": \"Coordinador técnico\",\n            \"active\": true,\n            \"role\": \"6142be220ef498b6971e4d7e\",\n            \"fullName\": \"YO SOY COORDINADOR TÉCNICO\",\n            \"id\": \"6152a75d32a19d2ab99eb83d\"\n        },\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTJhNzVlMzJhMTlkMmFiOTllYjg0MCIsInVzZXJOYW1lIjoiMTIzNCIsInJvbGUiOnsiX2lkIjoiNjE0MmJlMjIwZWY0OThiNjk3MWU0ZDdlIiwicm9sZU5hbWUiOiJDb29yZGluYWRvciB0w6ljbmljbyJ9LCJwZXJzb24iOnsiX2lkIjoiNjE1MmE3NWQzMmExOWQyYWI5OWViODNkIiwiaWRlbnRpdHlUeXBlIjoiQ0MiLCJpZGVudGl0eURvY3VtZW50IjoiMTIzNCIsImZpcnN0TmFtZSI6IllPIFNPWSIsImxhc3ROYW1lIjoiQ09PUkRJTkFET1IgVMOJQ05JQ08iLCJhZGRyZXNzIjoiQ1JBIDE4QSAjIDI2QSAtIDA0IiwicGhvbmUiOiIzMTY2MjQyNjAwIiwiY2l0eSI6IlBBTE1JUkEiLCJjb250cmFjdCI6bnVsbCwicm9sZU5hbWUiOiJDb29yZGluYWRvciB0w6ljbmljbyIsImFjdGl2ZSI6dHJ1ZSwicm9sZSI6IjYxNDJiZTIyMGVmNDk4YjY5NzFlNGQ3ZSIsImZ1bGxOYW1lIjoiWU8gU09ZIENPT1JESU5BRE9SIFTDiUNOSUNPIiwiaWQiOiI2MTUyYTc1ZDMyYTE5ZDJhYjk5ZWI4M2QifSwiaWF0IjoxNjMyODA2ODIwLCJleHAiOjE2MzI4OTMyMjB9.G4jnYQTYVonPdxrABtrpcC0VFtp68K-TANRGCjJfzug\",\n            \"expires_in\": 86400\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Técnico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.json().data.token.access_token;\r",
+							"pm.globals.set(\"tokenPAWEB\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"123456\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"123456\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1287"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"507-DlH3xjQoSXW5hoVTwC5B68XI1rM\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Sep 2021 00:29:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"id\": \"6153b34350f4cf677b7df26a\",\n        \"userName\": \"123456\",\n        \"role\": {\n            \"_id\": \"6142be220ef498b6971e4d7c\",\n            \"roleName\": \"Técnico\"\n        },\n        \"person\": {\n            \"_id\": \"6153b34350f4cf677b7df267\",\n            \"identityType\": \"CC\",\n            \"identityDocument\": \"123456\",\n            \"firstName\": \"YO SOY\",\n            \"lastName\": \"TÉCNICO\",\n            \"address\": \"CRA 18A # 26A - 04\",\n            \"phone\": \"3166242600\",\n            \"city\": \"PALMIRA\",\n            \"contract\": null,\n            \"roleName\": \"Técnico\",\n            \"active\": true,\n            \"role\": \"6142be220ef498b6971e4d7c\",\n            \"fullName\": \"YO SOY TÉCNICO\",\n            \"id\": \"6153b34350f4cf677b7df267\"\n        },\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTNiMzQzNTBmNGNmNjc3YjdkZjI2YSIsInVzZXJOYW1lIjoiMTIzNDU2Iiwicm9sZSI6eyJfaWQiOiI2MTQyYmUyMjBlZjQ5OGI2OTcxZTRkN2MiLCJyb2xlTmFtZSI6IlTDqWNuaWNvIn0sInBlcnNvbiI6eyJfaWQiOiI2MTUzYjM0MzUwZjRjZjY3N2I3ZGYyNjciLCJpZGVudGl0eVR5cGUiOiJDQyIsImlkZW50aXR5RG9jdW1lbnQiOiIxMjM0NTYiLCJmaXJzdE5hbWUiOiJZTyBTT1kiLCJsYXN0TmFtZSI6IlTDiUNOSUNPIiwiYWRkcmVzcyI6IkNSQSAxOEEgIyAyNkEgLSAwNCIsInBob25lIjoiMzE2NjI0MjYwMCIsImNpdHkiOiJQQUxNSVJBIiwiY29udHJhY3QiOm51bGwsInJvbGVOYW1lIjoiVMOpY25pY28iLCJhY3RpdmUiOnRydWUsInJvbGUiOiI2MTQyYmUyMjBlZjQ5OGI2OTcxZTRkN2MiLCJmdWxsTmFtZSI6IllPIFNPWSBUw4lDTklDTyIsImlkIjoiNjE1M2IzNDM1MGY0Y2Y2NzdiN2RmMjY3In0sImlhdCI6MTYzMjg3NTM2OSwiZXhwIjoxNjMyOTYxNzY5fQ.bWu6hXV3rG2hxzq_22icuieVvCdrrM1NYIWV2Tg0w_A\",\n            \"expires_in\": 86400\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login compras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var token = pm.response.json().data.token.access_token;\r",
+							"pm.globals.set(\"tokenPAWEB\", token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"12345\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"12345\",\r\n    \"password\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1273"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4f9-wf4+rEw/m2GY0QekPMsLBrvIgtg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Sep 2021 05:49:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"ok\",\n    \"data\": {\n        \"id\": \"6152acb8159050276580789d\",\n        \"userName\": \"12345\",\n        \"role\": {\n            \"_id\": \"6142be220ef498b6971e4d80\",\n            \"roleName\": \"Compras\"\n        },\n        \"person\": {\n            \"_id\": \"6152acb7159050276580789a\",\n            \"identityType\": \"CC\",\n            \"identityDocument\": \"12345\",\n            \"firstName\": \"YO SOY\",\n            \"lastName\": \"COMPRAS\",\n            \"address\": \"CRA 18A # 26A - 04\",\n            \"phone\": \"3166242600\",\n            \"city\": \"PALMIRA\",\n            \"contract\": null,\n            \"roleName\": \"Compras\",\n            \"active\": true,\n            \"role\": \"6142be220ef498b6971e4d80\",\n            \"fullName\": \"YO SOY COMPRAS\",\n            \"id\": \"6152acb7159050276580789a\"\n        },\n        \"token\": {\n            \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNTJhY2I4MTU5MDUwMjc2NTgwNzg5ZCIsInVzZXJOYW1lIjoiMTIzNDUiLCJyb2xlIjp7Il9pZCI6IjYxNDJiZTIyMGVmNDk4YjY5NzFlNGQ4MCIsInJvbGVOYW1lIjoiQ29tcHJhcyJ9LCJwZXJzb24iOnsiX2lkIjoiNjE1MmFjYjcxNTkwNTAyNzY1ODA3ODlhIiwiaWRlbnRpdHlUeXBlIjoiQ0MiLCJpZGVudGl0eURvY3VtZW50IjoiMTIzNDUiLCJmaXJzdE5hbWUiOiJZTyBTT1kiLCJsYXN0TmFtZSI6IkNPTVBSQVMiLCJhZGRyZXNzIjoiQ1JBIDE4QSAjIDI2QSAtIDA0IiwicGhvbmUiOiIzMTY2MjQyNjAwIiwiY2l0eSI6IlBBTE1JUkEiLCJjb250cmFjdCI6bnVsbCwicm9sZU5hbWUiOiJDb21wcmFzIiwiYWN0aXZlIjp0cnVlLCJyb2xlIjoiNjE0MmJlMjIwZWY0OThiNjk3MWU0ZDgwIiwiZnVsbE5hbWUiOiJZTyBTT1kgQ09NUFJBUyIsImlkIjoiNjE1MmFjYjcxNTkwNTAyNzY1ODA3ODlhIn0sImlhdCI6MTYzMjgwODE2MCwiZXhwIjoxNjMyODk0NTYwfQ.k2wjvLBWqBFE8SajZDQh_miBPnfuQeFDJXCkJ4ZiTP8\",\n            \"expires_in\": 86400\n        }\n    }\n}"
+				}
+			]
+		}
+	]
+}
