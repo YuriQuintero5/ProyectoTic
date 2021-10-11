@@ -7,7 +7,7 @@ let ls = new SecureLS()
 const headers = {
 	Accept: "application/json",
 	"Content-Type": "application/json",
-	"access-token": ls.get('tokenKey').token
+	"access-token": ls.get('userInfo').token
   };
 /* The login action(function) first param is the vuex commit destructured object, 
 second is userData which is passed from where-ever you call that action.
@@ -24,23 +24,27 @@ async function login({ commit }, userData) {
 		.then((response) => {
 			// we use the data we get back in the response object after the promise succeeds
 			//you can change the data object props to match whatever your sever sends
+			console.log(response)
 			const typeResponse = response.data.type
 			if (typeResponse == "error") {
 				console.log('login error')
 				commit('auth_error')
-				ls.remove('token')
+				ls.remove('userInfo')
 				return response
 			}
 
 			const token = response.data.data.token.access_token
-			const user = response.data.data.userName
+			const username = response.data.data.userName
+			const userFistName = response.data.data.person.firstName
+			const userLastName = response.data.data.person.lastName
+			const role = response.data.data.role.roleName
+
 			// storing jwt in localStorage. https cookie is safer place to store
-			ls.set('tokenKey', { token: token }) // using secure-ls to encrypt local storage
-			ls.set('userKey', { user: user })
-			axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+			ls.set('userInfo', { user: `${userFistName} ${userLastName}`, username: username, token: token, role: role })// using secure-ls to encrypt local storage
+			axios.defaults.headers.common['access-token'] = token
 			// calling the mutation "auth_success" to change/update state.properties to the new values passed along in the second param
-			commit('auth_success', { token, user })
-			return response
+			commit('auth_success', { token, username })
+			return response.data
 		})
 		.catch((err) => {
 			console.log(`login error ${err}`)
@@ -82,7 +86,7 @@ async function getPerson({ commit }, id) {
 
 async function updatePerson({ commit }, userData) {
 	let response = await restApi
-		.put(`person/${userData.id}`, userData, { headers: headers })
+		.put(`person/${userData.id}`, userData.model, { headers: headers })
 		.then((response) => response.data)
 		.catch((err) => {
 			console.log(`update person error ${err}`)
@@ -100,8 +104,8 @@ export default {
 	logout({ commit }) {
 		return new Promise((resolve, reject) => {
 			commit('logout')
-			ls.remove('token')
-			delete restApi.defaults.headers.common['Authorization']
+			ls.remove('userInfo')
+			delete restApi.defaults.headers.common['access-token']
 			resolve()
 				//catches any errors and passed them to the promise for you to do something with
 				.catch((error) => reject(error))
@@ -112,8 +116,8 @@ export default {
 			.get('/refresh')
 			.then((response) => {
 				const token = response.data.access_token
-				ls.set('tokenKey', { token: token })
-				axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+				ls.set('userInfo', { token: token })
+				axios.defaults.headers.common['access-token'] = token
 				commit('auth_success', { token })
 			})
 			.catch((error) => {
