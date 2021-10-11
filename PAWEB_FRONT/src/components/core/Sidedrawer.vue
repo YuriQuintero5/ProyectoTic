@@ -72,13 +72,18 @@ export default {
 				},
 				{
 					to: "/usuario",
-					icon: "mdi-application",
+					icon: "mdi-badge-account-horizontal-outline",
 					text: "Usuarios",
 				},
 				{
 					to: "/tercero",
 					icon: "mdi-account",
 					text: "Terceros",
+				},
+				{
+					to: "/listar-equipos",
+					icon: "mdi-application",
+					text: "Lista de equipos",
 				},
 				{
 					to: "/user",

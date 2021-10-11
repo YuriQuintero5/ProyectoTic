@@ -36,7 +36,7 @@
 					</v-col>
 					<v-col class="d-flex justify-center">
 						<v-btn icon :color="buttonColor" block @click="logout">
-							Logout
+							Salir
 							<v-icon >mdi-power</v-icon>
 						</v-btn>
 					</v-col>

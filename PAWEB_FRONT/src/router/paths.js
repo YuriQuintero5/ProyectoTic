@@ -58,6 +58,14 @@ export default [
 					import(`@/views/DashboardViews/TerceroView.vue`),
 			},
 			{
+				path: 'listar-equipos', // ends up as /user
+				meta: {
+					name: 'Lista de equipos',
+				},
+				component: () =>
+					import(`@/views/DashboardViews/MachineListView.vue`),
+			},
+			{
 				path: 'user', // ends up as /user
 				meta: {
 					name: 'UserProfile',

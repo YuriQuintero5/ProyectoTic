@@ -96,11 +96,25 @@ async function updatePerson({ commit }, userData) {
   return response
 }
 
+async function getAllMachines({ commit }, params) {
+	console.log(params)
+	let response = await restApi
+		.get('machine', { headers: headers })
+		.then((response) => response.data)
+		.catch((err) => {
+			console.log(`get machine error ${err}`)
+			//commit('auth_error')
+		})
+		
+  return response
+}
+
 export default {
 	login,
 	createPerson,
 	getPerson,
 	updatePerson,
+	getAllMachines,
 	logout({ commit }) {
 		return new Promise((resolve, reject) => {
 			commit('logout')
