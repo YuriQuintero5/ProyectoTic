@@ -7,11 +7,11 @@ let ls = new SecureLS()
 const headers = {
 	Accept: "application/json",
 	"Content-Type": "application/json",
-	"access-token": ls.get('tokenKey').token
+	"access-token": ls.get('userInfo').token
   };
 
 // state set to the previous token, the authorization Axios header set to same
-const token = ls.get('tokenKey')
+const token = ls.get('userInfo').token
 //const token = localStorage.getItem("token");
 
 
@@ -28,7 +28,7 @@ const restApi = axios.create({
 		headers: {},
  })
  if (token) {
-		restApi.defaults.headers.common['access-token'] = token.token
+		restApi.defaults.headers.common['access-token'] = token
  }
  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
  restApi.defaults.headers.post['Access-Control-Allow-Origin'] = '*'

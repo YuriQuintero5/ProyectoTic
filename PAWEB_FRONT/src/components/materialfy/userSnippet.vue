@@ -11,30 +11,15 @@
 					</router-link>
 				</v-col>
 				<v-col cols="9" align-self="auto">
-					<v-card-title class="pa--20"> Travis Scott </v-card-title>
+					<v-card-title class="pa--20"> {{ ls.get('userInfo').user }} </v-card-title>
 					<v-card-subtitle>
 						<v-divider />
-						Adminstrator
+						{{ ls.get('userInfo').role }}
 					</v-card-subtitle>
 				</v-col>
 			</v-row>
 			<!-- these controls the search displaying in userSnippet -->
 			<v-divider />
-			<!-- this controls if the search box is shown -->
-			<v-row v-if="showSearch">
-				<v-col class="d-flex justify-center">
-					<v-text-field
-						v-model="message"
-						label="Search.."
-						prepend-inner-icon="mdi-magnify"
-						outlined
-						clearable
-						dense
-						color="tertiary"
-					>
-					</v-text-field>
-				</v-col>
-			</v-row>
 			<v-card v-if="showBottom">
 				<v-divider />
 				<!-- this changes the background color based on theme -->
@@ -63,6 +48,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import SecureLS from 'secure-ls'
+
 export default {
 	name: "UserSnippet",
 	props: {
@@ -73,6 +60,7 @@ export default {
 	},
 	data() {
 		return {
+			ls: new SecureLS(),
 			message: null,
 		};
 	},

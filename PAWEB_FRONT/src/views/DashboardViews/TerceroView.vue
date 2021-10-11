@@ -2,66 +2,77 @@
 
 <template>
 	<v-container>
-				<v-card flat color="secondary" class="elevation-0" :tile="true">
-					<v-form>
-						<v-container>
-							<v-row wrap>
-								<v-col xs12 md4>
-									<v-select
-									:items="items"
-									label="Seleciona una opción"
-									v-model="tercero.identityType"
-									outline
-									></v-select>
-								</v-col>
-								<v-col xs12 md12>	
-									<v-text-field 
-										v-model="tercero.identityDocument" 
-										label="Numero de identificación"
-										type="number"
-										v-on:keyup.enter="get" />
-								</v-col>
-							</v-row>
-							<v-row wrap>
-								<v-col xs12 md6>
-									<v-text-field v-model="tercero.firstName" label="Nombres" value="Travis" />
-								</v-col>
-								<v-col xs12 md6>
-									<v-text-field v-model="tercero.lastName" label="Apellidos" value="Scott" />
-								</v-col>
-							</v-row>
-							<v-row wrap>
-								<v-col xs12 md4>
-									<v-text-field 
-										v-model="tercero.phone" 
-										label="Telefono"
-										type="number" />
-								</v-col>
-								<v-col xs12 md4>
-									<v-text-field v-model="tercero.city" label="Ciudad" />
-								</v-col>
-							</v-row>
-							<v-row wrap>
-								<v-col xs12 md4>
-									<v-text-field
-										v-model="tercero.address"
-										label="Direccion"
-									/>
-								</v-col>
-							</v-row>
-							<br/>
-							<v-btn @click="manage">{{ btnText }}</v-btn>
-						</v-container>
-					</v-form>
-					<v-snackbar
-					v-model="snackbar"
-					:multi-line="mode === 'multi-line'"
-					:timeout="timeout"
-					:vertical="mode === 'vertical'"
-					>
-					{{ message }}
-					</v-snackbar>
-				</v-card>	
+		<header>
+			<span
+				class="text-h3 text-uppercase d-flex text-center"
+				style="color: #ffc107"
+				>Gestión de terceros</span
+			>
+			<p>
+				En esta sección puede crear, consultar o actualizar un tercero.
+				Para consultar un tercero, ingrese un id existente en el campo numero de identificación y presione enter.
+			</p>
+		</header>
+		<br/>
+		<v-card flat color="secondary" class="elevation-0" :tile="true">
+			<v-form>
+				<v-container>
+					<v-row wrap>
+						<v-col xs12 md4>
+							<v-select
+							:items="items"
+							label="Seleciona una opción"
+							v-model="tercero.identityType"
+							outline
+							></v-select>
+						</v-col>
+						<v-col xs12 md12>	
+							<v-text-field 
+								v-model="tercero.identityDocument" 
+								label="Numero de identificación"
+								type="number"
+								v-on:keyup.enter="get" />
+						</v-col>
+					</v-row>
+					<v-row wrap>
+						<v-col xs12 md6>
+							<v-text-field v-model="tercero.firstName" label="Nombres" value="Travis" />
+						</v-col>
+						<v-col xs12 md6>
+							<v-text-field v-model="tercero.lastName" label="Apellidos" value="Scott" />
+						</v-col>
+					</v-row>
+					<v-row wrap>
+						<v-col xs12 md4>
+							<v-text-field 
+								v-model="tercero.phone" 
+								label="Telefono"
+								type="number" />
+						</v-col>
+						<v-col xs12 md4>
+							<v-text-field v-model="tercero.city" label="Ciudad" />
+						</v-col>
+					</v-row>
+					<v-row wrap>
+						<v-col xs12 md4>
+							<v-text-field
+								v-model="tercero.address"
+								label="Direccion"
+							/>
+						</v-col>
+					</v-row>
+					<br/>
+					<v-btn @click="manage">{{ btnText }}</v-btn>
+				</v-container>
+			</v-form>
+			<v-snackbar
+				v-model="snackbar"
+				:timeout="timeout"
+				>
+				{{ message }}
+			</v-snackbar>
+		</v-card>	
+		<br/>
 	</v-container>
 </template>
 
@@ -145,9 +156,9 @@
 			},
 			update() {
 				this.$store
-					.dispatch('updatePerson', this.tercero) 
+					.dispatch('updatePerson', {id: this.tercero.id, model: this.tercero}) 
 					.then((response) => {
-						console.log(response)
+						console.log(`response: ${JSON.stringify(response.type)}`);
 						this.message = 'Actualización exitosa!';
 						this.snackbar = true
 						this.tercero = {

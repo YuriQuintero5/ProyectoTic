@@ -42,6 +42,14 @@ export default [
 				component: () => import(`@/views/DashboardViews/Dash.vue`),
 			},
 			{
+				path: 'usuario', // ends up as /user
+				meta: {
+					name: 'Usuario',
+				},
+				component: () =>
+					import(`@/views/DashboardViews/UsuarioView.vue`),
+			},
+			{
 				path: 'tercero', // ends up as /user
 				meta: {
 					name: 'Tercero',

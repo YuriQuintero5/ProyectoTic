@@ -71,9 +71,14 @@ export default {
 					
 				},
 				{
+					to: "/usuario",
+					icon: "mdi-application",
+					text: "Usuarios",
+				},
+				{
 					to: "/tercero",
 					icon: "mdi-account",
-					text: "Tercero",
+					text: "Terceros",
 				},
 				{
 					to: "/user",

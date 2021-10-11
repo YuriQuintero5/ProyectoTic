@@ -5,7 +5,7 @@ let ls = new SecureLS()
 
 export default {
 	authStatus: '',
-	token: ls.get('tokenKey') || '',
+	token: ls.get('userInfo').token || '',
 	user: {},
 	tableList: [],
 	notifications: [
@@ -37,5 +37,5 @@ export default {
 	],
 	currentTime: new Date().toLocaleString(),
 	avatarURL:
-		'https://bookingagentinfo.com/wp-content/uploads/2014/12/Travis-Scott-Contact-Information.jpg',
+		'https://th.bing.com/th/id/R.7628b8f701b4e169ed06ff89052cd50b?rik=nEZyxi3uPquYsw&pid=ImgRaw&r=0',
 }
