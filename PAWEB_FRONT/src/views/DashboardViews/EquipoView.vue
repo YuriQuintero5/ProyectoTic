@@ -1,6 +1,15 @@
-
 <template>
   <v-container>
+    <header>
+			<span
+				class="text-h3 text-uppercase d-flex text-center"
+				style="color: #ffc107"
+				>Gestión de Equipos</span
+			>
+			<p>
+				En esta sección puede crear, consultar o actualizar un tercero.
+			</p>
+		</header>
     <v-card flat color="secondary" class="elevation-0" :tile="true">
       <v-form>
         <v-container>

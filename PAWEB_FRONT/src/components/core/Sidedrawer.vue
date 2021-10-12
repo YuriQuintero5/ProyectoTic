@@ -85,6 +85,11 @@ export default {
           text: "Equipos",
         },
         {
+          to: "/revision",
+          icon: "mdi-checkbox-marked-outline",
+          text: "Revision",
+        },
+        {
           to: "/listar-equipos",
           icon: "mdi-application",
           text: "Lista de equipos",
