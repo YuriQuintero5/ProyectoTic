@@ -22,13 +22,13 @@ Vue.use(Vuex);
 
 // Create a new store
 const store = new Vuex.Store({
-	actions,
-	getters,
-	//modules object from modules/index.js
-	modules,
-	mutations,
-	state,
-	//plugins: [createPersistedState()],
+  actions,
+  getters,
+  //modules object from modules/index.js
+  modules,
+  mutations,
+  state,
+  //plugins: [createPersistedState()],
 });
 
 export default store;
