@@ -18,6 +18,7 @@ const saveLocalStorage = (value, key = SESSION) => {
 const getToken = () => {
   try {
     const session = window.localStorage.getItem(SESSION);
+    // console.log(session);
     if (session) {
       return JSON.parse(session).data.token.access_token;
     }
@@ -65,10 +66,12 @@ const url = (resource = "") => {
   return config.host + resource;
 };
 
-const headers = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  "access-token": getToken()
+const headers = () => {
+  return {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    "access-token": getToken()
+  };
 };
 
 const headersLogin = {

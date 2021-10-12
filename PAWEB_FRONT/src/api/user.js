@@ -18,7 +18,7 @@ const url = (resource = "") => {
  */
 const create = body =>
   axios
-    .post(url(config.user.route), body, { headers: auth.headers })
+    .post(url(config.user.route), body, { headers: auth.headers() })
     .then(response => response.data);
 
 export default {

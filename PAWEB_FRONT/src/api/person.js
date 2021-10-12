@@ -18,7 +18,7 @@ const url = (resource = "") => {
  */
 const create = body =>
   axios
-    .post(url(config.person.route), body, { headers: auth.headers })
+    .post(url(config.person.route), body, { headers: auth.headers() })
     .then(response => response.data);
 
 /**
@@ -28,7 +28,7 @@ const create = body =>
  */
 const edit = (id, body) =>
   axios
-    .put(url(config.person.route + `/${id}`), body, { headers: auth.headers })
+    .put(url(config.person.route + `/${id}`), body, { headers: auth.headers() })
     .then(response => response.data);
 
 /**
@@ -39,7 +39,9 @@ const edit = (id, body) =>
  */
 const addMachineById = (id, body) =>
   axios
-    .put(url(config.person.machine + `/${id}`), body, { headers: auth.headers })
+    .put(url(config.person.machine + `/${id}`), body, {
+      headers: auth.headers()
+    })
     .then(response => response.data);
 
 /**
@@ -49,7 +51,7 @@ const addMachineById = (id, body) =>
  */
 const getById = id =>
   axios
-    .get(url(config.person.route + `/${id}`), { headers: auth.headers })
+    .get(url(config.person.route + `/${id}`), { headers: auth.headers() })
     .then(response => response.data);
 
 /**
@@ -59,7 +61,7 @@ const getById = id =>
  */
 const getAll = params =>
   axios
-    .get(url(config.person.route), { params, headers: auth.headers })
+    .get(url(config.person.route), { params, headers: auth.headers() })
     .then(response => response.data);
 
 export default {
