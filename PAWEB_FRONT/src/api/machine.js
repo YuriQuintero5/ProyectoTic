@@ -18,7 +18,7 @@ const url = (resource = "") => {
  */
 const create = body =>
   axios
-    .post(url(config.machine.route), body, { headers: auth.headers })
+    .post(url(config.machine.route), body, { headers: auth.headers() })
     .then(response => response.data);
 
 /**
@@ -28,7 +28,9 @@ const create = body =>
  */
 const edit = (id, body) =>
   axios
-    .put(url(config.machine.route + `/${id}`), body, { headers: auth.headers })
+    .put(url(config.machine.route + `/${id}`), body, {
+      headers: auth.headers()
+    })
     .then(response => response.data);
 
 /**
@@ -38,7 +40,7 @@ const edit = (id, body) =>
  */
 const getById = id =>
   axios
-    .get(url(config.machine.route + `/${id}`), { headers: auth.headers })
+    .get(url(config.machine.route + `/${id}`), { headers: auth.headers() })
     .then(response => response.data);
 
 /**
@@ -48,7 +50,7 @@ const getById = id =>
  */
 const getAll = params =>
   axios
-    .get(url(config.machine.route), { params, headers: auth.headers })
+    .get(url(config.machine.route), { params, headers: auth.headers() })
     .then(response => response.data);
 
 export default {
