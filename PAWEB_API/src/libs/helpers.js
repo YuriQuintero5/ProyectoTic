@@ -1,3 +1,4 @@
+const transporter = require("../mailer");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const path = require("path");
@@ -19,4 +20,18 @@ exports.generateToken = (payload) => {
     access_token: token,
     expires_in: config.server.jwtKeyExpiresIn,
   };
+};
+
+exports.sendEmail = async (body) => {
+  try {
+    const { to, subject, html } = body;
+    return await transporter.sendMail({
+      from: "PAWEB <support@paweb.com>",
+      to,
+      subject,
+      html,
+    });
+  } catch (error) {
+    return error;
+  }
 };

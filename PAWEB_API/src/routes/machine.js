@@ -10,6 +10,11 @@ router.put(
   [guards.verifyToken, guards.isTechnical],
   ctrl.updateByIdReview
 );
+router.put(
+  "/fail/:id",
+  [guards.verifyToken, guards.isTechnical],
+  ctrl.updateByIdFail
+);
 router.get("/", guards.verifyToken, ctrl.getAll);
 router.get("/:id", guards.verifyToken, ctrl.getById);
 router.delete("/:id", guards.verifyToken, ctrl.deleteById);

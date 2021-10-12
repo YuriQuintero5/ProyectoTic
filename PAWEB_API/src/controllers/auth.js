@@ -1,4 +1,5 @@
 const model = require("../models/user");
+const helper = require("../libs/helpers");
 
 function senResponse(res, type, data, status = 200) {
   const result = {
@@ -36,4 +37,9 @@ exports.login = async (req, res) => {
   } catch (error) {
     senResponse(res, "error", error, 500);
   }
+};
+
+exports.sendEmail = async (req, res) => {
+  const result = helper.sendEmail(req.body);
+  senResponse(res, "ok", result);
 };

@@ -3,6 +3,7 @@ const router = express.Router();
 const personRouter = require("./person");
 const authRouter = require("./auth");
 const userRouter = require("./user");
+const roleRouter = require("./role");
 const machineRouter = require("./machine");
 
 router.get("/", (req, res) => {
@@ -14,5 +15,6 @@ module.exports = {
   personRouter,
   router,
   userRouter,
+  roleRouter,
   machineRouter,
 };
