@@ -138,12 +138,14 @@ export default {
       this.$store
         .dispatch("getMachine", id)
         .then((response) => {
-          this.equipo.identityType = response.data[0].identityType;
-          this.equipo.firstName = response.data[0].firstName;
-          this.equipo.lastName = response.data[0].lastName;
-          this.equipo.phone = response.data[0].phone;
-          this.equipo.city = response.data[0].city;
-          this.equipo.address = response.data[0].address;
+          this.equipo.machineName = response.data[0].machineName;
+          this.equipo.description = response.data[0].description;
+          this.equipo.brand = response.data[0].brand;
+          this.equipo.accessories = response.data[0].accessories;
+          this.equipo.peripherals = response.data[0].peripherals;
+          this.equipo.manufacturer = response.data[0].manufacturer;
+          this.equipo.active = response.data[0].active;
+          this.equipo.status = response.data[0].status;
           this.equipo.id = response.data[0]._id;
           this.btnConsultar = "Consultar";
         })
