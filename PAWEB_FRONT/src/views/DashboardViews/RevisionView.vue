@@ -15,7 +15,7 @@
     <v-container>    
         <v-row wrap>
           <v-col xs12 md6>
-                <div class="mb-6">Fecha de Revision: <code>{{ activePicker || 'null' }}</code></div>
+                <div class="mb-6">Fecha de Revision: </div>
                 <v-menu
                 ref="menu"
                 v-model="revision.reviewDate"
