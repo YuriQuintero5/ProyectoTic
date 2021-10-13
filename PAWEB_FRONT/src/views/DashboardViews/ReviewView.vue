@@ -197,7 +197,7 @@
 							this.equipo.estado = response.data.status;
 							console.log(response)
 							const role = this.ls.get('userInfo').role
-							if (role == 'Coordinador técnico') {
+							if (role == 'Coordinador técnico' || role == 'Administrador') {
 								this.statusSelect = true;
 								if (response.data.reviews.length != 0) {
 									this.revision.reason = response.data.reviews[0].reason;

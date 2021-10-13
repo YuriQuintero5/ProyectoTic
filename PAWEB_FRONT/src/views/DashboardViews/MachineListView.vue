@@ -88,7 +88,7 @@ export default {
 	created() {
 		this.get();
 		const role = this.ls.get('userInfo').role
-		if (role == 'Coordinador técnico') {
+		if (role == 'Coordinador técnico' || role == 'Administrador') {
 			this.reviewBtn = true;
 		}
 	},
