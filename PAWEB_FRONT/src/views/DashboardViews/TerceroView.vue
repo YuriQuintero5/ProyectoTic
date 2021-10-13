@@ -61,6 +61,17 @@
 							/>
 						</v-col>
 					</v-row>
+					<v-row wrap>
+						<v-col xs12 md4>
+							<v-select
+							:items="itemsRole"
+							label="Seleciona una opción"
+							v-model="tercero.roleName"
+							v-if="roleSelect"
+							outline
+							></v-select>
+						</v-col>
+					</v-row>
 					<br/>
 					<v-btn @click="manage">{{ btnText }}</v-btn>
 				</v-container>
@@ -78,10 +89,13 @@
 
 <script>
 	import { mapGetters } from 'vuex'
+	import SecureLS from "secure-ls";
 	export default {
 		name: 'TerceroForm',
 		data() {
 			return {
+				ls: new SecureLS(),
+				roleSelect: false,
 				timeout: 2000,
 				btnText: 'Registrar',
 				snackbar: false,
@@ -97,9 +111,20 @@
 					id: ''
 				},
 				items: ['CC', 'CE', 'TI'],
+				itemsRole: ['Administrador', 'Asesor comercial', 'Técnico', 'Coordinador técnico', 'Compras', 'Cliente'],
 				textFieldColor: 'secondary',
 				message: 'Guardado exitoso!',
 				tabBreakPoint: this.$vuetify.breakpoint.mobile ? false : true,
+			}
+		},
+		created() {
+			const role = this.ls.get('userInfo').role
+			if (role == 'Administrador') {
+				this.roleSelect = true;
+				this.itemsRole = ['Administrador', 'Asesor comercial', 'Técnico', 'Coordinador técnico', 'Compras', 'Cliente'];
+			} else if (role == 'Coordinador técnico') {
+				this.roleSelect = true;
+				this.itemsRole = ['Técnico', 'Cliente'];
 			}
 		},
 		methods: {
@@ -145,6 +170,7 @@
 							this.tercero.phone = response.data[0].phone;
 							this.tercero.city = response.data[0].city;
 							this.tercero.address = response.data[0].address;
+							this.tercero.roleName = response.data[0].roleName;
 							this.tercero.id = response.data[0]._id;
 							this.btnText = 'Actualizar';
 						})

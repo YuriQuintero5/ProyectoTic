@@ -125,6 +125,11 @@ export default {
 						text: "Inicio",
 					},
 					{
+						to: "/tercero",
+						icon: "mdi-account",
+						text: "Gestión de terceros",
+					},
+					{
 						to: "/listar-equipos-almacen",
 						icon: "mdi-application",
 						text: "Lista de equipos",
@@ -137,6 +142,11 @@ export default {
 						to: "/",
 						icon: "mdi-view-dashboard",
 						text: "Inicio",
+					},
+					{
+						to: "/tercero",
+						icon: "mdi-account",
+						text: "Gestión de usuarios",
 					},
 					{
 						to: "/listar-equipos",
