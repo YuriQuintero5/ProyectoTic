@@ -94,7 +94,6 @@ export default {
 				.catch((err) => console.log(err))
 		},
 		editItem(item) {
-			console.log(item.id)
 			this.$router.push({ name: 'revision', params:{ id: item.id }})
 
 		},

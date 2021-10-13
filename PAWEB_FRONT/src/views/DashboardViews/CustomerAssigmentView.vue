@@ -1,15 +1,13 @@
-<!-- @format -->
-
 <template>
 	<v-container>
 		<header>
 			<span
 				class="text-h3 text-uppercase d-flex text-center"
 				style="color: #ffc107"
-				>Registrar revisión</span
+				>Asignar cliente</span
 			>
 			<p>
-				En esta sección puede realizar el registro del equipo seleccionado.
+				En esta sección puede asignar a un cliente el equipo seleccionado.
 			</p>
 		</header>
 		<br/>
@@ -20,32 +18,21 @@
 						<v-container>
 							<v-row wrap>
 								<v-col xs12 md6>
-									<v-text-field v-model="revision.peripherals" label="Perifericos" value="Travis" />
+									<v-text-field v-model="customerId" label="Identificación del cliente" value="Travis" />
 								</v-col>
 							</v-row>
 							<v-row wrap>
 								<v-col xs12 md4>
-									<v-text-field v-model="revision.accesories" label="Accesorios" />
-								</v-col>
-							</v-row>
-							<v-row wrap>
-								<v-col xs12 md4>
-									<v-textarea
-										v-model="revision.reason"
-										label="Motivo del estado"
-									/>
-								</v-col>
-							</v-row>
-							<v-row wrap>
-								<v-col xs12 md4>
-									<v-textarea
-										v-model="revision.diagnostic"
-										label="Diagnostico"
-									/>
+									<v-select
+									:items="items"
+									label="Seleciona un tipo de entrega"
+									v-model="asignacion.entryType"
+									outline
+									></v-select>
 								</v-col>
 							</v-row>
 							<br/>
-							<v-btn @click="create">Registrar</v-btn>&nbsp;
+							<v-btn @click="searchPerson">Registrar</v-btn>&nbsp;
 							<v-btn @click="cancel">Cancelar</v-btn>
 						</v-container>
 					</v-form>
@@ -115,15 +102,15 @@
 		data() {
 			return {
 				id: '',
+				person: {},
 				timeout: 2000,
 				snackbar: false,
-				revision: {
-					reviewDate: '',
-					reason: '',
-					diagnostic: '',
-					accesories: '',
-					peripherals: '',
-					status: 'Revisión'
+				customerId:'',
+				asignacion: {
+					entryType: '',
+					entryDate: '',
+					active: 'true',
+					machine: '',
 				},
 				equipo: {
 					orden: '',
@@ -132,8 +119,10 @@
 					marca: '',
 					fabricante: '',
 					descripcion: '',
-					estado: ''
+					estado: '',
+					id:''
 				},
+				items: ['Venta', 'Comodato', 'Préstamo'],
 				textFieldColor: 'secondary',
 				message: 'Guardado exitoso!',
 				tabBreakPoint: this.$vuetify.breakpoint.mobile ? false : true,
@@ -144,23 +133,39 @@
 		},
 		methods: {
 			cancel() {
-				this.$router.push({ name: 'listar equipos cuarentena'})
+				this.$router.push({ name: 'Lista de equipos'})
 			},
-			create() {
-				this.revision.reviewDate = this.getDateTime();
+			searchPerson() {
 				this.$store
-					.dispatch('createReview', { id: this.id, model: this.revision }) 
+					.dispatch('getPerson', this.customerId) 
 					.then((response) => {
-						console.log(response)
-						this.message = 'Registro exitoso!';
-						this.snackbar = true
-						this.$router.push({ name: 'listar equipos cuarentena'})
+							if (response.data.length != 0) {
+								this.person = response.data
+								this.create()
+							}
+		
+							this.message = 'Cliente no encontrado!';
+							this.snackbar = true
 						})
 					.catch((err) => {
 						console.log(err)
-						this.message = 'Ocurrio un error al intentar registrar la revisión!';
-						this.snackbar = true
 					})
+			},
+			create() {
+				this.asignacion.entryDate = this.getDateTime();
+				this.asignacion.machine = this.equipo.id;
+				
+				this.$store
+				.dispatch('createAssigment', { id: this.person[0].id, model: this.asignacion }) 
+				.then(() => {
+					this.$router.push({ name: 'Lista de equipos'})
+					})
+				.catch((err) => {
+					console.log(err)
+					this.message = 'Ocurrio un error al intentar registrar la revisión!';
+					this.snackbar = true
+				})	
+				
 			},
 			get() {
 				this.id = this.$route.params.id;
@@ -174,6 +179,7 @@
 							this.equipo.fabricante = response.data.manufacturer;
 							this.equipo.descripcion = response.data.description;
 							this.equipo.estado = response.data.status;
+							this.equipo.id = response.data.id;
 						})
 					.catch((err) => {
 						console.log(err)
