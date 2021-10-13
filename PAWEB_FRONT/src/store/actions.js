@@ -104,7 +104,7 @@ async function updatePerson({ commit }, userData) {
 async function getAllMachines({ commit }, params) {
 	const role = ls.get('userInfo').role
 	let uri = 'machine';
-	if (role === 'Técnico') {
+	if (role === 'Técnico' || role === 'Asesor comercial') {
 		uri = `machine/?status=${params}`
 	}
 
@@ -182,6 +182,18 @@ async function createReview({ commit }, userData) {
 	return response;
 }
 
+async function createAssigment({ commit }, userData) {
+	let response = await restApi
+		.put(`person/machine/${userData.id}`, userData.model, { headers: headers })
+		.then((response) => response.data)
+		.catch((err) => {
+			console.log(`create assigment error ${err}`);
+			commit('create_assigment_error')
+		});
+  
+	return response;
+}
+
 export default {
   login,
   createPerson,
@@ -193,6 +205,7 @@ export default {
   updateMachine,
   getMachineById,
   createReview,
+  createAssigment,
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       commit("logout");

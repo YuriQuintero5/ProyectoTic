@@ -72,6 +72,7 @@ export default [
       },
       {
         path: "listar-equipos", // ends up as /user
+		name: "Lista de equipos",
         meta: {
           name: "Lista de equipos",
         },
@@ -99,6 +100,14 @@ export default [
           name: "Revisión",
         },
         component: () => import(`@/views/DashboardViews/ReviewView.vue`),
+      },
+		{
+        path: "asignacion-cliente-equipo/:id",
+		name: 'Asignacion cliente equipo',
+        meta: {
+          name: "Asignacion cliente equipo",
+        },
+        component: () => import(`@/views/DashboardViews/CustomerAssigmentView.vue`),
       },
       {
         path: "table-list",

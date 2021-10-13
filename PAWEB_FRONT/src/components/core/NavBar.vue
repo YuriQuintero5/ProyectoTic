@@ -15,7 +15,6 @@
 		<!-- When placing a single v-spacer before or after the child components, 
 		the components will push to the right and left of its container -->
 		<v-spacer />
-		<MaterialfyNotifications :buttonColor="btnColor" />
 		<!-- userSnippet.vue menu -->
 
 		<v-menu nudge-bottom="57" :close-on-content-click="false">
