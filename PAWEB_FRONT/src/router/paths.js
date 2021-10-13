@@ -64,6 +64,13 @@ export default [
         component: () => import(`@/views/DashboardViews/EquipoView.vue`),
       },
       {
+        path: "revision", // ends up as /user
+        meta: {
+          name: "Revision",
+        },
+        component: () => import(`@/views/DashboardViews/RevisionView.vue`),
+      },
+      {
         path: "listar-equipos", // ends up as /user
         meta: {
           name: "Lista de equipos",
