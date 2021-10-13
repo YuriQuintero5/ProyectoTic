@@ -40,11 +40,8 @@
 				</template>
 				<!-- TABLE ACTIONS -->
 				<template v-slot:[`item.actions`]="{ item }">
-					<v-icon small class="mr-2" @click="manageReview(item)" v-if="reviewBtn">
-						mdi-clipboard
-					</v-icon>
-					<v-icon small class="mr-2" @click="createFail(item)" color="red darken-2">
-						mdi-bug
+					<v-icon small class="mr-2" @click="editItem(item)">
+						mdi-pencil
 					</v-icon>
 				</template>
 				<template #[`item.avatar`]="{ item }">
@@ -57,11 +54,8 @@
 </template>
 
 <script>
-import SecureLS from "secure-ls";
 export default {
 	data: () => ({
-		ls: new SecureLS(),
-		reviewBtn: false,
 		max25chars: (v) => v.length <= 25 || "Input too long!",
 		pagination: {},
 		userList: [],
@@ -87,27 +81,21 @@ export default {
 	// called when page is created before dom to load data from api
 	created() {
 		this.get();
-		const role = this.ls.get('userInfo').role
-		if (role == 'Coordinador técnico') {
-			this.reviewBtn = true;
-		}
 	},
 
 	methods: {
 		get() {
 			this.$store
-				.dispatch('getAllMachines', 'Default') 
+				.dispatch('getAllMachines', 'Almacén') 
 				.then((response) => {
 						console.log(response)
 						this.userList = response.data;
 					})
 				.catch((err) => console.log(err))
 		},
-		manageReview(item) {
-			this.$router.push({ name: 'revision', params:{ id: item.id }})
-		},
-		createFail(item) {
-			this.$router.push({ name: 'Fallo', params:{ id: item.id }})
+		editItem(item) {
+			this.$router.push({ name: 'Asignacion cliente equipo', params:{ id: item.id }})
+
 		},
 	},
 };

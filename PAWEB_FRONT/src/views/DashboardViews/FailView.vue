@@ -1,13 +1,15 @@
+<!-- @format -->
+
 <template>
 	<v-container>
 		<header>
 			<span
 				class="text-h3 text-uppercase d-flex text-center"
 				style="color: #ffc107"
-				>Asignar cliente</span
+				>Registrar daño</span
 			>
 			<p>
-				En esta sección puede asignar a un cliente el equipo seleccionado.
+				En esta sección puede realizar el registro del daño del equipo seleccionado.
 			</p>
 		</header>
 		<br/>
@@ -18,21 +20,39 @@
 						<v-container>
 							<v-row wrap>
 								<v-col xs12 md6>
-									<v-text-field v-model="customerId" label="Identificación del cliente" value="Travis" />
+									<v-text-field v-model="fallo.peripherals" label="Perifericos" value="Travis" />
+								</v-col>
+							</v-row>
+							<v-row wrap>
+								<v-col xs12 md4>
+									<v-text-field v-model="fallo.accesories" label="Accesorios" />
 								</v-col>
 							</v-row>
 							<v-row wrap>
 								<v-col xs12 md4>
 									<v-select
 									:items="items"
-									label="Seleciona un tipo de entrega"
-									v-model="asignacion.entryType"
+									label="Seleciona el motivo de ingreso"
+									v-model="fallo.status"
 									outline
 									></v-select>
 								</v-col>
 							</v-row>
+							<v-row wrap>
+								<v-col xs12 md4>
+									<v-text-field v-model="fallo.invoice" label="Numero de factura" />
+								</v-col>
+							</v-row>
+							<v-row wrap>
+								<v-col xs12 md4>
+									<v-textarea
+										v-model="fallo.reason"
+										label="Concepto del fallo"
+									/>
+								</v-col>
+							</v-row>
 							<br/>
-							<v-btn @click="searchPerson">Registrar</v-btn>&nbsp;
+							<v-btn @click="create">Registrar</v-btn>&nbsp;
 							<v-btn @click="cancel">Cancelar</v-btn>
 						</v-container>
 					</v-form>
@@ -97,20 +117,24 @@
 
 <script>
 	import { mapGetters } from 'vuex'
+	import SecureLS from "secure-ls";
 	export default {
 		name: 'ReviewForm',
 		data() {
 			return {
+				ls: new SecureLS(),
 				id: '',
-				person: {},
 				timeout: 2000,
 				snackbar: false,
-				customerId:'',
-				asignacion: {
-					entryType: '',
-					entryDate: '',
-					active: 'true',
-					machine: '',
+				fallo: {
+					failDate: '',
+					reason: '',
+					invoice: '',
+					accesories: '',
+					peripherals: '',
+					status: '',
+					userName: '',
+					workerName: ''
 				},
 				equipo: {
 					orden: '',
@@ -119,10 +143,9 @@
 					marca: '',
 					fabricante: '',
 					descripcion: '',
-					estado: '',
-					id:''
+					estado: ''
 				},
-				items: ['Venta', 'Comodato', 'Préstamo'],
+				items: ['Garantía', 'Devolución', 'Reparación'],
 				textFieldColor: 'secondary',
 				message: 'Guardado exitoso!',
 				tabBreakPoint: this.$vuetify.breakpoint.mobile ? false : true,
@@ -133,39 +156,23 @@
 		},
 		methods: {
 			cancel() {
-				this.$router.push({ name: 'Lista de equipos almacen'})
+				this.$router.push({ name: 'Lista de equipos'})
 			},
-			searchPerson() {
+			create() {
+				this.fallo.failDate = this.getDateTime();
+				this.fallo.userName = this.ls.get('userInfo').username
+				this.fallo.workerName = this.ls.get('userInfo').user
 				this.$store
-					.dispatch('getPerson', this.customerId) 
+					.dispatch('createFail', { id: this.id, model: this.fallo }) 
 					.then((response) => {
-							if (response.data.length != 0) {
-								this.person = response.data
-								this.create()
-							}
-		
-							this.message = 'Cliente no encontrado!';
-							this.snackbar = true
+						console.log(response)
+						this.$router.push({ name: 'Lista de equipos'})
 						})
 					.catch((err) => {
 						console.log(err)
+						this.message = 'Ocurrio un error al intentar registrar el fallo!';
+						this.snackbar = true
 					})
-			},
-			create() {
-				this.asignacion.entryDate = this.getDateTime();
-				this.asignacion.machine = this.equipo.id;
-				
-				this.$store
-				.dispatch('createAssigment', { id: this.person[0].id, model: this.asignacion }) 
-				.then(() => {
-					this.$router.push({ name: 'Lista de equipos almacen'})
-					})
-				.catch((err) => {
-					console.log(err)
-					this.message = 'Ocurrio un error al intentar registrar la revisión!';
-					this.snackbar = true
-				})	
-				
 			},
 			get() {
 				this.id = this.$route.params.id;
@@ -179,7 +186,6 @@
 							this.equipo.fabricante = response.data.manufacturer;
 							this.equipo.descripcion = response.data.description;
 							this.equipo.estado = response.data.status;
-							this.equipo.id = response.data.id;
 						})
 					.catch((err) => {
 						console.log(err)
