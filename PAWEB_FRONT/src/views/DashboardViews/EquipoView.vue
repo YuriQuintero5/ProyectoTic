@@ -147,6 +147,8 @@ export default {
       this.$store
         .dispatch("getMachine", id)
         .then((response) => {
+          console.log(response);
+          this.equipo.machineName = response.data[0].machineName;
           this.equipo.machineName = response.data[0].machineName;
           this.equipo.description = response.data[0].description;
           this.equipo.brand = response.data[0].brand;

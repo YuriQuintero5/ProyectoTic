@@ -109,6 +109,7 @@ exports.updateByIdReview = async (req, res) => {
       machine.reviews.push(req.body);
     } else {
       // Actualizar revisión
+      reviews[index].reviewDate = req.body.reviewDate;
       reviews[index].reason = req.body.reason;
       reviews[index].diagnostic = req.body.diagnostic;
       reviews[index].accesories = req.body.accesories;
