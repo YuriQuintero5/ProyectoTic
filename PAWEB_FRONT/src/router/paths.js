@@ -78,13 +78,21 @@ export default [
         },
         component: () => import(`@/views/DashboardViews/MachineListView.vue`),
       },
+      {
+        path: "listar-equipos-almacen", // ends up as /user
+		name: "Lista de equipos almacen",
+        meta: {
+          name: "Lista de equipos",
+        },
+        component: () => import(`@/views/DashboardViews/WarehouseListView.vue`),
+      },
 		{
         path: "listar-equipos-cuarentena", // ends up as /user
 		name: 'listar equipos cuarentena',
         meta: {
           name: "Lista de equipos",
         },
-        component: () => import(`@/views/DashboardViews/QuarentineListView.vue`),
+        component: () => import(`@/views/DashboardViews/QuarantineListView.vue`),
       },
       {
         path: "user", // ends up as /user
@@ -101,6 +109,14 @@ export default [
         },
         component: () => import(`@/views/DashboardViews/ReviewView.vue`),
       },
+		{
+			path: "fallo/:id",
+			name: 'Fallo',
+			meta: {
+				name: "Fallo",
+			},
+			component: () => import(`@/views/DashboardViews/FailView.vue`),
+		},
 		{
         path: "asignacion-cliente-equipo/:id",
 		name: 'Asignacion cliente equipo',

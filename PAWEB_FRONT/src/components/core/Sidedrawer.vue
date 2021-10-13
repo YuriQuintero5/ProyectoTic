@@ -118,6 +118,19 @@ export default {
 				]; 
 				break;
 			case 'Asesor comercial':
+				links = [
+					{
+						to: "/",
+						icon: "mdi-view-dashboard",
+						text: "Inicio",
+					},
+					{
+						to: "/listar-equipos-almacen",
+						icon: "mdi-application",
+						text: "Lista de equipos",
+					},
+				];
+				break;
 			case 'Coordinador técnico':
 				links = [
 					{
@@ -141,6 +154,11 @@ export default {
 					},
 					{
 						to: "/listar-equipos-cuarentena",
+						icon: "mdi-application",
+						text: "Revisiones",
+					},
+					{
+						to: "/listar-equipos",
 						icon: "mdi-application",
 						text: "Lista de equipos",
 					},

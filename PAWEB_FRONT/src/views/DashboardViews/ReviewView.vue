@@ -44,8 +44,19 @@
 									/>
 								</v-col>
 							</v-row>
+							<v-row wrap>
+								<v-col xs12 md4>
+									<v-select
+									:items="items"
+									label="Seleciona el estado del equipo"
+									v-model="revision.status"
+									v-show="statusSelect"
+									outline
+									></v-select>
+								</v-col>
+							</v-row>
 							<br/>
-							<v-btn @click="create">Registrar</v-btn>&nbsp;
+							<v-btn @click="create">{{ btnText }}</v-btn>&nbsp;
 							<v-btn @click="cancel">Cancelar</v-btn>
 						</v-container>
 					</v-form>
@@ -110,12 +121,16 @@
 
 <script>
 	import { mapGetters } from 'vuex'
+	import SecureLS from "secure-ls";
 	export default {
 		name: 'ReviewForm',
 		data() {
 			return {
+				ls: new SecureLS(),
 				id: '',
-				timeout: 2000,
+				statusSelect: false,
+				btnText: 'Registrar',
+				timeout: 3000,
 				snackbar: false,
 				revision: {
 					reviewDate: '',
@@ -134,6 +149,7 @@
 					descripcion: '',
 					estado: ''
 				},
+				items: ['Almacén', 'Cuarentena', 'Revisión','Baja'],
 				textFieldColor: 'secondary',
 				message: 'Guardado exitoso!',
 				tabBreakPoint: this.$vuetify.breakpoint.mobile ? false : true,
@@ -143,8 +159,15 @@
 			this.get();
 		},
 		methods: {
+			manage() {
+				if (this.btnText == 'Registrar') {
+					this.create();
+				} else {
+					this.update();
+				}
+			},
 			cancel() {
-				this.$router.push({ name: 'listar equipos cuarentena'})
+				this.$router.push({ name: 'Lista de equipos'});
 			},
 			create() {
 				this.revision.reviewDate = this.getDateTime();
@@ -152,9 +175,7 @@
 					.dispatch('createReview', { id: this.id, model: this.revision }) 
 					.then((response) => {
 						console.log(response)
-						this.message = 'Registro exitoso!';
-						this.snackbar = true
-						this.$router.push({ name: 'listar equipos cuarentena'})
+						this.$router.push({ name: 'Lista de equipos'});
 						})
 					.catch((err) => {
 						console.log(err)
@@ -174,10 +195,40 @@
 							this.equipo.fabricante = response.data.manufacturer;
 							this.equipo.descripcion = response.data.description;
 							this.equipo.estado = response.data.status;
+							console.log(response)
+							const role = this.ls.get('userInfo').role
+							if (role == 'Coordinador técnico') {
+								this.statusSelect = true;
+								if (response.data.reviews.length != 0) {
+									this.revision.reason = response.data.reviews[0].reason;
+									this.revision.diagnostic = response.data.reviews[0].diagnostic;
+									this.revision.accesories = response.data.reviews[0].accesories;
+									this.revision.peripherals = response.data.reviews[0].peripherals;
+									this.revision.status = response.data.status;	
+								} else {				
+									this.message = 'No hay revisiones registradas!';
+									this.snackbar = true;
+								}
+								this.btnText = 'Actualizar';
+							}
 						})
 					.catch((err) => {
 						console.log(err)
-						this.message = 'Tercero no encontrado!';
+						this.message = 'Equipo no encontrado!';
+						this.snackbar = true
+					})
+			},
+			update() {
+				this.$store
+					.dispatch('updateMachine', {id: this.id, model: { status: this.revision.status }}) 
+					.then((response) => {
+						console.log(`response: ${JSON.stringify(response.type)}`);
+						this.btnText = 'Registrar';
+						this.$router.push({ name: 'Lista de equipos'});
+					})
+					.catch((err) => {
+						console.log(err)
+						this.message = 'Error al actualizar la revisión!';
 						this.snackbar = true
 					})
 			},
