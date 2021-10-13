@@ -50,6 +50,7 @@ export default [
       },
       {
         path: "tercero", // ends up as /user
+		name: 'tercero',
         meta: {
           name: "Tercero",
         },
@@ -69,12 +70,28 @@ export default [
         },
         component: () => import(`@/views/DashboardViews/MachineListView.vue`),
       },
+		{
+        path: "listar-equipos-cuarentena", // ends up as /user
+		name: 'listar equipos cuarentena',
+        meta: {
+          name: "Lista de equipos",
+        },
+        component: () => import(`@/views/DashboardViews/QuarentineListView.vue`),
+      },
       {
         path: "user", // ends up as /user
         meta: {
           name: "UserProfile",
         },
         component: () => import(`@/views/DashboardViews/UserProfileView.vue`),
+      },
+		{
+        path: "revision/:id",
+		name: 'revision',
+        meta: {
+          name: "Revisión",
+        },
+        component: () => import(`@/views/DashboardViews/ReviewView.vue`),
       },
       {
         path: "table-list",

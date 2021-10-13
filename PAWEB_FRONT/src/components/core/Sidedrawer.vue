@@ -51,10 +51,13 @@
 
 <script>
 import { mapState } from "vuex";
+import SecureLS from 'secure-ls'
+
 export default {
   name: "SideDrawer",
   data() {
     return {
+		ls: new SecureLS(),
       group: false,
       drawerShown: false /* controls the opening and closing of drawer */,
       drawer: this.drawerState /* this is just here for the watcher to wrok */,
@@ -62,64 +65,7 @@ export default {
         this.color /* this is just here for the color watcher to wrok */,
       activeColor: "secondary",
       alwaysClosed: true /* controls if side drawer is in temp mode or not */,
-      links: [
-        /* builds the list of links using v-for and this array */
-        {
-          to: "/",
-          icon: "mdi-view-dashboard",
-          text: "Inicio",
-        },
-        {
-          to: "/usuario",
-          icon: "mdi-badge-account-horizontal-outline",
-          text: "Usuarios",
-        },
-        {
-          to: "/tercero",
-          icon: "mdi-account",
-          text: "Terceros",
-        },
-        {
-          to: "/equipo",
-          icon: "mdi-radioactive",
-          text: "Equipos",
-        },
-        {
-          to: "/listar-equipos",
-          icon: "mdi-application",
-          text: "Lista de equipos",
-        },
-        {
-          to: "/user",
-          icon: "mdi-account",
-          text: "User Profile",
-        },
-        {
-          to: "/table-list",
-          icon: "mdi-application",
-          text: "Basic Tables",
-        },
-        {
-          to: "/data-tables",
-          icon: "mdi-application-cog",
-          text: "CRUD Data Tables",
-        },
-        {
-          to: "/cardsview",
-          icon: "mdi-badge-account-horizontal-outline",
-          text: "Card Types",
-        },
-        {
-          to: "/maps",
-          icon: "mdi-map-marker",
-          text: "Maps",
-        },
-        {
-          to: "/notifications",
-          icon: "mdi-bell",
-          text: "Notifications",
-        },
-      ],
+      links: [],
     };
   },
 
@@ -145,9 +91,128 @@ export default {
     /* this was used to check state with a getter and setter. Now its used in watcher */
     ...mapState("drawertoggle", ["drawerState", "image", "color"]),
   },
+  created() {
+		this.loadLinks();
+	},
   methods: {
     persistantDrawer() {
       this.alwaysClosed = !this.alwaysClosed;
+    },
+	loadLinks() {
+		const role = this.ls.get('userInfo').role
+		let links;
+
+		switch (role) {
+			case 'Compras':
+				links = [
+					{
+						to: "/",
+						icon: "mdi-view-dashboard",
+						text: "Inicio",
+					},
+					{
+						to: "/equipo",
+						icon: "mdi-radioactive",
+						text: "Equipos",
+					},
+				]; 
+				break;
+			case 'Asesor comercial':
+			case 'Coordinador técnico':
+				links = [
+					{
+						to: "/",
+						icon: "mdi-view-dashboard",
+						text: "Inicio",
+					},
+					{
+						to: "/listar-equipos",
+						icon: "mdi-application",
+						text: "Lista de equipos",
+					},
+				]; 
+				break;
+			case 'Técnico':
+				links = [
+					{
+						to: "/",
+						icon: "mdi-view-dashboard",
+						text: "Inicio",
+					},
+					{
+						to: "/listar-equipos-cuarentena",
+						icon: "mdi-application",
+						text: "Lista de equipos",
+					},
+				]; 
+				break;
+			case 'Administrador':
+				links = [
+					/* builds the list of links using v-for and this array */
+					{
+					to: "/",
+					icon: "mdi-view-dashboard",
+					text: "Inicio",
+					},
+					{
+					to: "/usuario",
+					icon: "mdi-badge-account-horizontal-outline",
+					text: "Usuarios",
+					},
+					{
+					to: "/tercero",
+					icon: "mdi-account",
+					text: "Terceros",
+					},
+					{
+					to: "/equipo",
+					icon: "mdi-radioactive",
+					text: "Equipos",
+					},
+					{
+					to: "/listar-equipos",
+					icon: "mdi-application",
+					text: "Lista de equipos",
+					},
+					{
+					to: "/user",
+					icon: "mdi-account",
+					text: "User Profile",
+					},
+					{
+					to: "/table-list",
+					icon: "mdi-application",
+					text: "Basic Tables",
+					},
+					{
+					to: "/data-tables",
+					icon: "mdi-application-cog",
+					text: "CRUD Data Tables",
+					},
+					{
+					to: "/cardsview",
+					icon: "mdi-badge-account-horizontal-outline",
+					text: "Card Types",
+					},
+					{
+					to: "/maps",
+					icon: "mdi-map-marker",
+					text: "Maps",
+					},
+					{
+					to: "/notifications",
+					icon: "mdi-bell",
+					text: "Notifications",
+					},
+				]; 
+				break;
+
+			default:
+				links= [];
+				break;
+		}
+
+		this.links = links;
     },
   },
 };

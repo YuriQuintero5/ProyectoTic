@@ -65,11 +65,11 @@ async function createPerson({ commit }, userData) {
     .post("person", userData, { headers: headers })
     .then((response) => {
       console.log(response);
-      //commit('auth_success', { token, user })
+      commit('create_person')
     })
     .catch((err) => {
       console.log(`create person error ${err}`);
-      //commit('auth_error')
+      commit('create_person_error')
     });
 
   return response;
@@ -83,7 +83,7 @@ async function getPerson({ commit }, id) {
     .then((response) => response.data)
     .catch((err) => {
       console.log(`get person error ${err}`);
-      //commit('auth_error')
+      commit('get_person_error')
     });
 
   return response;
@@ -95,20 +95,25 @@ async function updatePerson({ commit }, userData) {
     .then((response) => response.data)
     .catch((err) => {
       console.log(`update person error ${err}`);
-      //commit('auth_error')
+      commit('update_person_error')
     });
 
   return response;
 }
 
 async function getAllMachines({ commit }, params) {
-  console.log(params);
+	const role = ls.get('userInfo').role
+	let uri = 'machine';
+	if (role === 'Técnico') {
+		uri = `machine/?status=${params}`
+	}
+
   let response = await restApi
-    .get("machine", { headers: headers })
+    .get(uri, { headers: headers })
     .then((response) => response.data)
     .catch((err) => {
       console.log(`get machine error ${err}`);
-      //commit('auth_error')
+      commit('get_all_machines_error')
     });
 
   return response;
@@ -118,13 +123,10 @@ async function getAllMachines({ commit }, params) {
 async function createMachine({ commit }, userData) {
   let response = await restApi
     .post("machine", userData, { headers: headers })
-    .then((response) => {
-      console.log(response);
-      //commit('auth_success', { token, user })
-    })
+    .then((response) => response.data)
     .catch((err) => {
       console.log(`error creando equipo. ${err}`);
-      //commit('auth_error')
+      commit('create_machine_error')
     });
 
   return response;
@@ -138,7 +140,7 @@ async function getMachine({ commit }, id) {
     .then((response) => response.data)
     .catch((err) => {
       console.log(`error consultando equipo ${err}`);
-      //commit('auth_error')
+      commit('get_machine_error')
     });
 
   return response;
@@ -150,12 +152,35 @@ async function updateMachine({ commit }, userData) {
     .then((response) => response.data)
     .catch((err) => {
       console.log(`Error actualizando el equipo. ${err}`);
-      //commit('auth_error')
+      commit('update_machine_error')
     });
 
   return response;
 }
-//#endregion
+
+async function getMachineById({ commit }, id) {
+	let response = await restApi
+		.get(`machine/${id}`, { headers: headers })
+		.then((response) => response.data)
+		.catch((err) => {
+			console.log(`get machine error ${err}`);
+			commit('get_machine_by_id_error')
+		});
+  
+	return response;
+}
+
+async function createReview({ commit }, userData) {
+	let response = await restApi
+		.put(`machine/review/${userData.id}`, userData.model, { headers: headers })
+		.then((response) => response.data)
+		.catch((err) => {
+			console.log(`create review error ${err}`);
+			commit('create_review_error')
+		});
+  
+	return response;
+}
 
 export default {
   login,
@@ -166,6 +191,8 @@ export default {
   createMachine,
   getMachine,
   updateMachine,
+  getMachineById,
+  createReview,
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       commit("logout");
@@ -220,26 +247,4 @@ export default {
         });
     });
   },
-
-  // autoRefreshToken ({ commit }) {
-  //   return new Promise((resolve, reject) => {
-  //     setInterval(function () {
-  //       // code goes here that will be run every 20 minutes.
-  //       axios.get('/refresh')
-  //         .then(response => {
-  //           const token = response.data.access_token
-  //           localStorage.setItem('token', token)
-  //           axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-  //           commit('auth_success', { token })
-  //           resolve(response)
-  //         })
-  //         .catch(error => {
-  //           console.log('refresh token error')
-  //           console.log(error)
-  //           reject(error)
-  //         })
-  //     }, 1200000)
-  //   }
-  //   )
-  // },
 };
