@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import { genericApi } from "../../plugins/axios";
 export default {
 	data: () => ({
 		snack: false,
@@ -130,7 +129,7 @@ export default {
 	methods: {
 		get() {
 			this.$store
-				.dispatch('getAllMachines', 22) 
+				.dispatch('getAllMachines', 'default') 
 				.then((response) => {
 						console.log(response)
 						this.userList = response.data;
