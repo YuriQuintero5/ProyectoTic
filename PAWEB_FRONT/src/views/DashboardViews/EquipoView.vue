@@ -1,6 +1,15 @@
-
 <template>
   <v-container>
+    <header>
+			<span
+				class="text-h3 text-uppercase d-flex text-center"
+				style="color: #ffc107"
+				>Gestión de Equipos</span
+			>
+			<p>
+				En esta sección puede crear, consultar o actualizar un tercero.
+			</p>
+		</header>
     <v-card flat color="secondary" class="elevation-0" :tile="true">
       <v-form>
         <v-container>
@@ -140,6 +149,15 @@ export default {
         .then((response) => {
           console.log(response);
           this.equipo.machineName = response.data[0].machineName;
+          this.equipo.machineName = response.data[0].machineName;
+          this.equipo.description = response.data[0].description;
+          this.equipo.brand = response.data[0].brand;
+          this.equipo.accessories = response.data[0].accessories;
+          this.equipo.peripherals = response.data[0].peripherals;
+          this.equipo.manufacturer = response.data[0].manufacturer;
+          this.equipo.active = response.data[0].active;
+          this.equipo.status = response.data[0].status;
+          this.equipo.id = response.data[0]._id;
           this.btnConsultar = "Consultar";
         })
         .catch((err) => {
