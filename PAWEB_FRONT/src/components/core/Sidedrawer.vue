@@ -178,59 +178,34 @@ export default {
 				links = [
 					/* builds the list of links using v-for and this array */
 					{
-					to: "/",
-					icon: "mdi-view-dashboard",
-					text: "Inicio",
+						to: "/",
+						icon: "mdi-view-dashboard",
+						text: "Inicio",
 					},
 					{
-					to: "/usuario",
-					icon: "mdi-badge-account-horizontal-outline",
-					text: "Usuarios",
+						to: "/user",
+						icon: "mdi-badge-account-horizontal-outline",
+						text: "Usuarios",
 					},
 					{
-					to: "/tercero",
-					icon: "mdi-account",
-					text: "Terceros",
+						to: "/tercero",
+						icon: "mdi-account",
+						text: "Terceros",
 					},
 					{
-					to: "/equipo",
-					icon: "mdi-radioactive",
-					text: "Equipos",
+						to: "/equipo",
+						icon: "mdi-radioactive",
+						text: "Equipos",
 					},
 					{
-					to: "/listar-equipos",
-					icon: "mdi-application",
-					text: "Lista de equipos",
+						to: "/listar-equipos-cuarentena",
+						icon: "mdi-application",
+						text: "Revisiones",
 					},
 					{
-					to: "/user",
-					icon: "mdi-account",
-					text: "User Profile",
-					},
-					{
-					to: "/table-list",
-					icon: "mdi-application",
-					text: "Basic Tables",
-					},
-					{
-					to: "/data-tables",
-					icon: "mdi-application-cog",
-					text: "CRUD Data Tables",
-					},
-					{
-					to: "/cardsview",
-					icon: "mdi-badge-account-horizontal-outline",
-					text: "Card Types",
-					},
-					{
-					to: "/maps",
-					icon: "mdi-map-marker",
-					text: "Maps",
-					},
-					{
-					to: "/notifications",
-					icon: "mdi-bell",
-					text: "Notifications",
+						to: "/listar-equipos",
+						icon: "mdi-application",
+						text: "Lista de equipos",
 					},
 				]; 
 				break;
