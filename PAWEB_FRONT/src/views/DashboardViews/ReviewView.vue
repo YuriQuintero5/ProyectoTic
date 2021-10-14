@@ -167,7 +167,7 @@
 				}
 			},
 			cancel() {
-				this.$router.push({ name: 'Lista de equipos'});
+				this.$router.push({ name: 'listar equipos cuarentena'});
 			},
 			create() {
 				this.revision.reviewDate = this.getDateTime();
@@ -175,7 +175,7 @@
 					.dispatch('createReview', { id: this.id, model: this.revision }) 
 					.then((response) => {
 						console.log(response)
-						this.$router.push({ name: 'Lista de equipos'});
+						this.$router.push({ name: 'listar equipos cuarentena'});
 						})
 					.catch((err) => {
 						console.log(err)

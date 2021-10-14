@@ -30,11 +30,6 @@
 					"
 				>
 					<v-col class="d-flex justify-center">
-						<router-link to="user">
-							<v-btn :color="buttonColor">Profile</v-btn>
-						</router-link>
-					</v-col>
-					<v-col class="d-flex justify-center">
 						<v-btn icon :color="buttonColor" block @click="logout">
 							Salir
 							<v-icon >mdi-power</v-icon>

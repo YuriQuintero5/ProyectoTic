@@ -142,10 +142,10 @@
 							if (response.data.length != 0) {
 								this.person = response.data
 								this.create()
+							} else {
+								this.message = 'Cliente no encontrado!';
+								this.snackbar = true
 							}
-		
-							this.message = 'Cliente no encontrado!';
-							this.snackbar = true
 						})
 					.catch((err) => {
 						console.log(err)

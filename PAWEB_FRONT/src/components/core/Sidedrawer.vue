@@ -183,11 +183,6 @@ export default {
 						text: "Inicio",
 					},
 					{
-						to: "/user",
-						icon: "mdi-badge-account-horizontal-outline",
-						text: "Usuarios",
-					},
-					{
 						to: "/tercero",
 						icon: "mdi-account",
 						text: "Terceros",

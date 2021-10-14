@@ -3,10 +3,8 @@
 		<v-container>
 			<v-row class="d-flex align-center mb-2">
 				<div class="ma-2">
-					<span v-for="link in links" :key="link.name">
-						<a :href="link.Link" class="ma-2" target="_blank">{{
-							link.name
-						}}</a>
+					<span>
+						PAWEB
 					</span>
 				</div>
 				<v-spacer />
@@ -23,17 +21,6 @@
 <script>
 export default {
 	data: () => ({
-		links: [
-			{ name: "Inicio", Link: "/" },
-			{
-				name: "Terceros",
-				Link: "/tercero",
-			},
-			{
-				name: "Equipos",
-				Link: "/equipo",
-			},
-		],
 	}),
 };
 </script>
