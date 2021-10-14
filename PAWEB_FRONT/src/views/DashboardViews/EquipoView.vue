@@ -97,7 +97,7 @@ export default {
         status: "",
         id: "",
       },
-      items: ["almacen", "cuarentena"],
+      items: ["Almacén", "Cuarentena"],
       textFieldColor: "secondary",
       message: "Guardado exitoso!",
       tabBreakPoint: this.$vuetify.breakpoint.mobile ? false : true,
@@ -118,12 +118,21 @@ export default {
       }
     },
     create() {
+      this.equipo.active = "true";
+      const today = new Date();
+      this.equipo.orderDate =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1).toString().padStart(2, "0") +
+        "-" +
+        today.getDate().toString().padStart(2, "0");
       this.$store
         .dispatch("createMachine", this.equipo)
         .then(() => {
           this.message = "Guardado exitoso!";
           this.snackbar = true;
           this.equipo = {
+            orderDate:"",
             serial: "",
             machineName: "",
             description: "",
@@ -147,7 +156,7 @@ export default {
       this.$store
         .dispatch("getMachine", id)
         .then((response) => {
-          console.log(response);
+          this.equipo.orderDate = response.data[0].orderDate;
           this.equipo.machineName = response.data[0].machineName;
           this.equipo.machineName = response.data[0].machineName;
           this.equipo.description = response.data[0].description;
@@ -168,12 +177,13 @@ export default {
     },
     update() {
       this.$store
-        .dispatch("updatePerson", this.equipo)
+        .dispatch("updateMachine", this.equipo)
         .then((response) => {
           console.log(response);
           this.message = "Actualización exitosa!";
           this.snackbar = true;
           this.equipo = {
+            orderDate: "",
             serial: "",
             machineName: "",
             description: "",

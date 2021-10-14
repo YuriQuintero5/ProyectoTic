@@ -123,6 +123,7 @@ async function getAllMachines({ commit }, params) {
 
 //#region Equipo
 async function createMachine({ commit }, userData) {
+  console.log (userData)
   let response = await restApi
     .post("machine", userData, { headers: headers })
     .then((response) => response.data)
@@ -150,7 +151,7 @@ async function getMachine({ commit }, id) {
 
 async function updateMachine({ commit }, userData) {
   let response = await restApi
-    .put(`machine/${userData.id}`, userData.model, { headers: headers })
+    .put(`machine/${userData.id}`, userData, { headers: headers })
     .then((response) => response.data)
     .catch((err) => {
       console.log(`Error actualizando el equipo. ${err}`);
