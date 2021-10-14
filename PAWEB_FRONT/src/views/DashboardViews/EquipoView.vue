@@ -58,8 +58,8 @@
             </v-col>
           </v-row>
           <br />
-          <v-btn depressed @click="manage('guardar')">Guardar</v-btn>
-          <v-btn depressed @click="manage('modificar')">Modificar</v-btn>
+          <v-btn depressed @click="manage('guardar')">Guardar</v-btn>&nbsp;
+          <v-btn depressed @click="manage('modificar')">Modificar</v-btn>&nbsp;
           <v-btn depressed @click="manage('consultar')">Consultar</v-btn>
         </v-container>
       </v-form>

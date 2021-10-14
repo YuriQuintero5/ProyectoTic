@@ -232,48 +232,4 @@ export default {
         .catch((error) => reject(error));
     });
   },
-  refreshtoken({ commit }) {
-    restApi
-      .get("/refresh")
-      .then((response) => {
-        const token = response.data.access_token;
-        ls.set("userInfo", { token: token });
-        axios.defaults.headers.common["access-token"] = token;
-        commit("auth_success", { token });
-      })
-      .catch((error) => {
-        console.log("refresh token error");
-        commit("logout");
-        ls.remove("token");
-        console.log(error);
-      });
-  },
-  getTableList({ commit }, tableName) {
-    restApi
-      .get(`/${tableName}`)
-      .then((response) => {
-        console.log(response);
-        let tableList = response.data.Keys;
-        commit("setTableList", { tableList });
-      })
-      .catch((error) => console.log(error));
-  },
-  updateTableItem(tableData) {
-    return new Promise((resolve, reject) => {
-      let httpmethod = tableData.method; //allows you to delete/update and change the request method type without hardcoding
-      axios({
-        url: `/${tableData.endpoint}`,
-        method: httpmethod,
-        data: tableData.tableItem,
-      })
-        .then((response) => {
-          // you can also do some kind of data alteration here if you want
-          resolve(response);
-        })
-        .catch((error) => {
-          console.log(error);
-          reject(error);
-        });
-    });
-  },
 };

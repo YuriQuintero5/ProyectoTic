@@ -41,7 +41,7 @@
 				<!-- TABLE ACTIONS -->
 				<template v-slot:[`item.actions`]="{ item }">
 					<v-icon small class="mr-2" @click="editItem(item)">
-						mdi-pencil
+						mdi-clipboard
 					</v-icon>
 				</template>
 				<template #[`item.avatar`]="{ item }">

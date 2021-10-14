@@ -183,8 +183,7 @@
 			update() {
 				this.$store
 					.dispatch('updatePerson', {id: this.tercero.id, model: this.tercero}) 
-					.then((response) => {
-						console.log(`response: ${JSON.stringify(response.type)}`);
+					.then(() => {
 						this.message = 'Actualización exitosa!';
 						this.snackbar = true
 						this.tercero = {

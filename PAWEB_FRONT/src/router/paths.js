@@ -42,13 +42,6 @@ export default [
         component: () => import(`@/views/DashboardViews/Dash.vue`),
       },
       {
-        path: "usuario", // ends up as /user
-        meta: {
-          name: "Usuario",
-        },
-        component: () => import(`@/views/DashboardViews/UsuarioView.vue`),
-      },
-      {
         path: "tercero", // ends up as /user
 		name: 'tercero',
         meta: {
@@ -62,13 +55,6 @@ export default [
           name: "Equipo",
         },
         component: () => import(`@/views/DashboardViews/EquipoView.vue`),
-      },
-      {
-        path: "revision", // ends up as /user
-        meta: {
-          name: "Revision",
-        },
-        component: () => import(`@/views/DashboardViews/RevisionView.vue`),
       },
       {
         path: "listar-equipos", // ends up as /user
@@ -94,13 +80,6 @@ export default [
         },
         component: () => import(`@/views/DashboardViews/QuarantineListView.vue`),
       },
-      {
-        path: "user", // ends up as /user
-        meta: {
-          name: "UserProfile",
-        },
-        component: () => import(`@/views/DashboardViews/UserProfileView.vue`),
-      },
 		{
         path: "revision/:id",
 		name: 'revision',
@@ -125,56 +104,7 @@ export default [
         },
         component: () => import(`@/views/DashboardViews/CustomerAssigmentView.vue`),
       },
-      {
-        path: "table-list",
-        meta: {
-          name: "TableList",
-        },
-        component: () => import(`@/views/DashboardViews/SimpleTablesView.vue`),
-      },
-      {
-        path: "data-tables",
-        meta: {
-          name: "DataTable",
-        },
-        component: () => import(`@/views/DashboardViews/DataTableView.vue`),
-      },
-      {
-        path: "maps",
-        meta: {
-          name: "Maps",
-        },
-        component: () => import(`@/views/DashboardViews/MapsView.vue`),
-      },
-      {
-        path: "notifications",
-        meta: {
-          name: "Notifications",
-        },
-        component: () => import(`@/views/DashboardViews/NotificationsView.vue`),
-      },
-      {
-        path: "cardsview",
-        meta: {
-          name: "CardsView",
-        },
-        component: () => import(`@/views/DashboardViews/CardsView.vue`),
-      },
     ],
-    //per route guard if you dont want to use the global version in /router/index
-    // beforeEnter: (to, from, next) => {
-    // 	// checks to see if you are trying to go to dashboard and are logged in
-    // 	if (to.name !== 'dashboard' && store.getters.authorized) {
-    // 		next("/dashboard");
-    // 	}
-    // 	// sends you to login if you arent authorized
-    // 	else if (to.name !== 'dashboard' && !store.getters.authorized) { //
-    // 		next("/login");
-    // 	}
-    // 	else {
-    // 		next(to.name); // this sends you to your original route if you arent trying to go to login
-    // 	}
-    // },
   },
   // This is a catch all aka page not found route. it will send you to the dashboard
   {
