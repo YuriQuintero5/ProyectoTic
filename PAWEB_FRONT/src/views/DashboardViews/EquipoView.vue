@@ -60,7 +60,8 @@
           <br />
           <v-btn depressed @click="manage('guardar')">Guardar</v-btn>&nbsp;
           <v-btn depressed @click="manage('modificar')">Modificar</v-btn>&nbsp;
-          <v-btn depressed @click="manage('consultar')">Consultar</v-btn>
+          <v-btn depressed @click="manage('consultar')">Consultar</v-btn>&nbsp;
+          <v-btn depressed @click="manage('eliminar')">Eliminar</v-btn>
         </v-container>
       </v-form>
       <v-snackbar
@@ -111,6 +112,9 @@ export default {
           break;
         case "modificar":
           this.update();
+          break;
+        case "eliminar":
+          this.delete();
           break;
         default:
           this.get();
@@ -199,6 +203,32 @@ export default {
         .catch((err) => {
           console.log(err);
           this.message = "Error al actualizar el Equipo!";
+          this.snackbar = true;
+        });
+    },
+    delete() {
+      this.$store
+        .dispatch("deleteMachine", this.equipo.id)
+        .then((response) => {
+          console.log(response);
+          this.message = "Eliminación exitosa!";
+          this.snackbar = true;
+          this.equipo = {
+            orderDate: "",
+            serial: "",
+            machineName: "",
+            description: "",
+            brand: "",
+            accessories: "",
+            peripherals: "",
+            manufacturer: "",
+            active: "",
+            status: "",
+          };
+        })
+        .catch((err) => {
+          console.log(err);
+          this.message = "Error al eliminar el Equipo!";
           this.snackbar = true;
         });
     },

@@ -161,6 +161,18 @@ async function updateMachine({ commit }, userData) {
   return response;
 }
 
+async function deleteMachine({ commit }, id) {
+	let response = await restApi
+		.delete(`machine/${id}`, { headers: headers })
+		.then((response) => response.data)
+		.catch((err) => {
+			console.log(`Error eliminando el equipo. ${err}`);
+			commit('delete_machine_error')
+		});
+  
+	return response;
+  }
+
 async function getMachineById({ commit }, id) {
 	let response = await restApi
 		.get(`machine/${id}`, { headers: headers })
@@ -218,6 +230,7 @@ export default {
   createMachine,
   getMachine,
   updateMachine,
+  deleteMachine,
   getMachineById,
   createReview,
   createFail,
